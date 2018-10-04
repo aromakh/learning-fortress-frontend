@@ -25,12 +25,10 @@ export class CompMultipleChoice extends Comp {
         <mat-button-toggle ngDefaultControl [checked]="answers[getChoice(choice)]" (change)="changeAnswer($event, i)" name="choice-{{i}}" class="flex-choice" fxLayout="column" fxLayoutAlign="stretch stretch" *ngFor="let choice of data.data.choices | shuffle; let i = index" [value]="choice">
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <mat-checkbox *ngIf="attempt" [checked]="getState(choice) == 1" [indeterminate]="getState(choice) == -1" disabled></mat-checkbox>
-                <div fxFlex="1 0 0"></div>
                 <div fxLayout="column">
-                    <div style="font-size: 3vw; line-height: 3vw;">{{ choice }}</div>
-                    <div *ngIf="attempt" style="font-size: 2.5vw; line-height: 2.5vw;">{{ data.data.reveals[getChoice(choice)] }}</div>
+                    <div fittext [minFontSize]="15">{{ choice }}</div>
+                    <div *ngIf="attempt" class="reveal" fittext [minFontSize]="15">{{ data.data.reveals[getChoice(choice)] }}</div>
                 </div>
-                <div fxFlex="1 0 0"></div>
             </div>
         </mat-button-toggle>
     </mat-button-toggle-group>
@@ -44,9 +42,11 @@ export class MultipleChoiceComponent extends CompComponent {
     constructor() { super() }
 
     ngOnInit() {
+        // Set all the choices as false initially
         this.answers = this.data.data.choices.map(() => false);
         if(this.attempt) {
             this.attempt.answer
+                // Filter to see if more choices have been made than correctAnswers
                 .filter(val => val < this.data.data.correctAnswers)
                 .forEach(val => { this.answers[val] = true });
         }
@@ -60,7 +60,8 @@ export class MultipleChoiceComponent extends CompComponent {
     }
 
     getAnswer() : number[] {
-        let a = []
+        let a = [];
+        // For each choice if true push to a (correct answer array)
         this.answers.forEach((answer, index) => {
             if(answer) a.push(index);
         })

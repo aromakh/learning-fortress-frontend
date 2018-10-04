@@ -19,16 +19,18 @@ export class CompSort extends Comp {
 @Component({
     selector: 'sort',
     template: `
-    <div class="sort-container" fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px">
-        <div class="cat-container" *ngFor="let cat of userCats; let i = index" fxFlex="1 0 0">
+    <!-- 50px margin at bottom to push reveals out from under the category columns -->
+    <div class="sort-container" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+        <div class="cat-container" *ngFor="let cat of userCats; let i = index" fittext>
             <div class="cat-header">{{cat.name}}</div>
-            <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userCats[i].choices" class="sort-list">
-                <mat-list-item  class="touch-list-item sort-list-item" *ngFor="let item of cat.choices">
-                    <div>
-                        <mat-checkbox *ngIf="attempt" [indeterminate]="getState(item) == -1" [checked]="getState(item) == 1" disabled></mat-checkbox>
-                        {{item}}
-                        <!-- <div *ngIf="attempt" style="font-size: 12px">{{ data.data.reveals[item] }}</div> -->
-                    </div>
+            <mat-list [dragula]="'DRAG'" [(dragulaModel)]="cat.choices" class="sort-list">
+                <mat-list-item touch-action="none" class="touch-list-item sort-list-item" *ngFor="let item of cat.choices">
+                    <mat-checkbox *ngIf="attempt; else dragndrop" [indeterminate]="getState(item) == -1" [checked]="getState(item) == 1" disabled></mat-checkbox>
+                    <ng-template #dragndrop>
+                        <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
+                    </ng-template>
+                    <div>{{item}}</div>
+                    <!-- <div *ngIf="attempt" class="reveal">{{ data.data.reveals[item] }}</div> -->
                 </mat-list-item>
             </mat-list>
         </div>
@@ -48,14 +50,14 @@ export class SortComponent extends CompComponent {
         if(!this.attempt) {
             var choicesArray = Object.keys(this.data.data.choices).map(key => key);
             this.userCats = [];
-            this.userCats.push({ choices: choicesArray, name: "Unsorted" });
             this.data.data.categories.forEach(cat => { this.userCats.push({ choices: [], name: cat }) });
+            this.userCats.push({ choices: choicesArray, name: "Unsorted" });
         } else {
             this.userCats = [];
-            this.userCats.push({ choices: [], name: "Unsorted" });
             this.data.data.categories.forEach(cat => { this.userCats.push({ choices: [], name: cat }) });
+            this.userCats.push({ choices: [], name: "Unsorted" });
             Object.keys(this.attempt.answer).forEach((val) => {
-                this.userCats[this.attempt.answer[val]+1].choices.push(val);
+                this.userCats[this.attempt.answer[val]].choices.push(val);
             });
             this.userCats[0].choices = Object.keys(this.data.data.choices).filter(val => {
                 return this.attempt.answer[val] == undefined;
@@ -66,11 +68,9 @@ export class SortComponent extends CompComponent {
     getAnswer() : { [choice: string]: number } {
         var choices = {};
         this.userCats.forEach((cat, index) => {
-            if(index != 0) {
-                cat.choices.forEach((choice) => {
-                    choices[choice] = index-1;
-                })
-            }
+            cat.choices.forEach((choice) => {
+                choices[choice] = index;
+            })
         })
         return choices;
     }

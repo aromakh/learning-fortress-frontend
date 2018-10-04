@@ -27,6 +27,17 @@ $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 @include angular-material-theme($app-theme);
 
 
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$custom-typography: mat-typography-config(
+  $font-family: 'Montserrat',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+@include angular-material-typography($custom-typography);
+
+
 @import "./colors.scss";
 
 html {
@@ -35,7 +46,6 @@ html {
 }
 
 body {
-    font-family: Roboto, Arial, sans-serif;
     margin: 0;
     display: flex;
     min-height:100%;

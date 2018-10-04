@@ -9,7 +9,7 @@ import { Brick } from '../../schema';
   templateUrl: './brick.component.html',
   styleUrls: ['./brick.component.scss'],
   styles: [
-    ':host >>> .background-green { background: green; }',
+    ':host >>> .background-green { background: #44dd44; }',
     ':host >>> .color-red { color: red; }',
     ':host >>> .nowrap { white-space: nowrap; }'
     ]

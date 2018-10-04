@@ -12,17 +12,19 @@ export class CompText extends Comp {
     }
 }
 
-@register("Text")
+@register("Reveal")
 @Component({
-    selector: "text",
+    selector: "reveal",
     template: `
-    <div class="comp-text-container">
-        <div [innerHTML]="data.data.text"></div>
+    <div *ngIf="attempt">
+        <div class="reveal">
+            {{data.data.text}}
+        </div>
     </div>
     `,
     styleUrls: ["../live.component.scss"]
 })
-export class TextComponent extends CompComponent {
+export class RevealComponent extends CompComponent {
     constructor() { super() }
 
     @Input() data: CompText;

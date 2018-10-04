@@ -1,4 +1,22 @@
 
+## Setting up a separate Dev Firestore
+You do not have access to the web console of the dummy firebase project (although you can interact with it using the connection details stored in this repo). It also might be corrupted or restored at anypoint. 
+
+If you just need a separate dummy backend for dev then:
+
+1. get a free account at https://firebase.google.com/   
+2. Create a new Cloud Firebase project, and click on 'Database' on left menu then 'Create database' under Cloud Firestore. generate a private key (Database>Project Settings>Service Accounts>Generate new private key). 
+3. Move this new key to /firebase/key.json in this directory.   
+4. Install the firebase backup-restore npm package globally, and run a restore of this dummy database (see below)
+```bash
+$ npm install -g firestore-backup-restore
+$ firestore-backup-restore --backupPath firebase/backup --restoreAccountCredentials firebase/key.json
+```
+https://www.npmjs.com/package/firestore-backup-restore
+5. Finally folow the instructions in [environment/environment.ts](./environment/environment.ts) to setup the connection details from app.
+
+
+## Security
 As we are using the Firestore db we need to set some security rules in the backend
 
 https://firebase.google.com/docs/firestore/security/get-started

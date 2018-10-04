@@ -12,17 +12,17 @@ export class CompText extends Comp {
     }
 }
 
-@register("Text")
+@register("Poem")
 @Component({
-    selector: "text",
+    selector: "poem",
     template: `
-    <div class="comp-text-container">
-        <div [innerHTML]="data.data.text"></div>
+    <div class="comp-poem-container">
+        <div [innerHTML]="data.data.text" fittext [maxFontSize]="15"></div>
     </div>
     `,
     styleUrls: ["../live.component.scss"]
 })
-export class TextComponent extends CompComponent {
+export class PoemComponent extends CompComponent {
     constructor() { super() }
 
     @Input() data: CompText;

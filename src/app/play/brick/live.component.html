@@ -1,5 +1,5 @@
 <timer [timer]="timer"></timer>
-<mat-vertical-stepper>
+<mat-horizontal-stepper>
     <ng-template matStepperIcon="number">
         <mat-icon>help_outline</mat-icon>
     </ng-template>
@@ -7,10 +7,9 @@
         <mat-icon>done</mat-icon>
     </ng-template>
     <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
-        <ng-template matStepLabel>Question {{index+1}}</ng-template>
         <question [question]="question" ></question>
     </mat-step>
-</mat-vertical-stepper>
+</mat-horizontal-stepper>
 <div class="begin-row" style="padding-bottom: 85px;"
     fxLayout="row" fxLayoutAlign="start center">
     <div fxFlex="1 0 0"></div>
