@@ -26,8 +26,19 @@ export class CompHorizontalShuffle extends Comp {
 @Component({
     selector: 'horizontal-shuffle',
     template: `
-    <div class="horizontal-shuffle-container" [dragula]="'DRAG'" [(dragulaModel)]="userChoices" fxLayout.gt-xs="row wrap" fxLayout.xs="row wrap" fxLayoutAlign.xs="center center">
-        <mat-card fxFlex.gt-xs="0 0 0%" fxFlex.xs="0 0 0" class="horizontal-shuffle-item touch-list-item" *ngFor="let choice of userChoices; let i = index" style="padding: 5px !important;white-space: nowrap;">
+    <div class="horizontal-shuffle-container"
+         fxLayout.gt-xs="row wrap"
+         fxLayout.xs="row wrap"
+         fxLayoutAlign.xs="center center">
+        <mat-card fxFlex.gt-xs="0 0 0%"
+                  fxFlex.xs="0 0 0"
+                  draggable="true"
+                  (drop)="drop($event, choice)"
+                  (dragstart)="drag($event, choice)"
+                  (dragover)="allowDrop($event)"
+                  class="horizontal-shuffle-item touch-list-item"
+                  *ngFor="let choice of userChoices; let i = index"
+                  style="padding: 5px !important;white-space: nowrap;">
             <div [innerHTML]="choice" fittext></div>
         </mat-card>
     </div>
@@ -36,6 +47,7 @@ export class CompHorizontalShuffle extends Comp {
     styleUrls: ['../live.component.scss']
 })
 export class HorizontalShuffleComponent extends CompComponent {
+    selected: string;
     @Input() data: CompHorizontalShuffle;
 
     userChoices: string[];
@@ -47,7 +59,7 @@ export class HorizontalShuffleComponent extends CompComponent {
         }
     }
 
-    getAnswer() : number[] {
+    getAnswer(): number[] {
         return this.userChoices.map(val => this.data.data.choices.indexOf(val));
     }
 
@@ -86,5 +98,24 @@ export class HorizontalShuffleComponent extends CompComponent {
         // Then, if the attempt scored no marks and the program is in live phase, then give the student a mark.
         if(attempt.marks == 0 && !prev) attempt.marks = 1;
         return attempt;
+    }
+
+    // drag and drop functions
+    // works only with unique items (choices)
+    allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    drop(ev, currentItem) {
+        ev.preventDefault();
+        const currentPos = this.userChoices.indexOf(currentItem);
+        const dragedPos = this.userChoices.indexOf(this.selected);
+        this.userChoices[currentPos] = this.selected;
+        this.userChoices[dragedPos] = currentItem;
+        this.selected = null;
+    }
+
+    drag(ev, item) {
+        this.selected = item;
     }
 }
