@@ -1,11 +1,11 @@
 <timer [timer]="timer"></timer>
-<mat-vertical-stepper>
+<mat-horizontal-stepper>
     <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
-        <ng-template matStepLabel>Question {{index+1}}</ng-template>
+        <ng-template matStepLabel></ng-template>
         <question *ngIf="!brickAttempt?.answers[index].correct" [question]="question" [attempt]="brickAttempt?.answers[index]"></question>
         <div *ngIf="brickAttempt?.answers[index].correct">Question is correct!</div>
     </mat-step>
-</mat-vertical-stepper>
+</mat-horizontal-stepper>
 <div class="begin-row" style="padding-bottom: 85px;"
     fxLayout="row" fxLayoutAlign="start center">
     <div fxFlex="1 0 0"></div>
