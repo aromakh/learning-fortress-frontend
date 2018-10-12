@@ -21,7 +21,7 @@ export class CompSort extends Comp {
     template: `
     <!-- 50px margin at bottom to push reveals out from under the category columns -->
     <div class="sort-container" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
-        <div class="cat-container" *ngFor="let cat of userCats; let i = index" fittext>
+        <div class="cat-container" *ngFor="let cat of userCats; let i = index">
             <div class="cat-header">{{cat.name}}</div>
             <mat-list [dragula]="'DRAG'" [(dragulaModel)]="cat.choices" class="sort-list">
                 <mat-list-item  class="touch-list-item sort-list-item" *ngFor="let item of cat.choices">
