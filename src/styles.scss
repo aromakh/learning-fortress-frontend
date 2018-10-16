@@ -194,3 +194,10 @@ mat-card {
 .nowrap { 
     white-space: nowrap; 
 }
+
+.not-selectable-posterity * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
