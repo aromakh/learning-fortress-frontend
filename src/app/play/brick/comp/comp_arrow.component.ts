@@ -29,9 +29,19 @@ export class CompArrow extends Comp {
     template: `
     <div class="arrow-container" fxFlex="1 1 100%" fxLayout="row">
         <mat-list>
-            <mat-list-item class="arrow-item-left touch-list-item" *ngFor="let item of userCats[0].choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center" >
-                <mat-checkbox *ngIf="attempt" [checked]="getState(ind) == 1" [indeterminate]="getState(ind) == -1" disabled></mat-checkbox>
-                <div *ngIf="attempt && data.data.reveals[getChoice(item)]" class="reveal" fittext [minFontSize]="10">{{ data.data.reveals[getChoice(item)] }}</div>
+            <mat-list-item class="arrow-item-left touch-list-item"
+                           *ngFor="let item of userCats[0].choices; let ind = index"
+                           fxLayout="row"
+                           fxLayoutAlign="space-around center" >
+                <ng-container *ngIf="attempt">
+                    <span class="tick-icon icon-FilledDenimBlueRectCross" *ngIf="getState(ind) != 1">
+                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
+                    </span>
+                    <span class="tick-icon icon-FilledDenimBlueRectTick" *ngIf="getState(ind) == 1">
+                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>
+                    </span>
+                    {{ data.data.reveals[getChoice(item)] }}
+                </ng-container>
                 <div class="arrow-item-text-left" fittext [minFontSize]="10" [innerHTML]="item"></div>
             </mat-list-item>
         </mat-list>
