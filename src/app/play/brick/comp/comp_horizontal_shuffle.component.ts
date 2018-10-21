@@ -27,7 +27,7 @@ export class CompHorizontalShuffle extends Comp {
     selector: 'horizontal-shuffle',
     template: `
     <div class="horizontal-shuffle-container" [dragula]="'DRAG'" [(dragulaModel)]="userChoices" fxLayout.gt-xs="row wrap" fxLayout.xs="row wrap" fxLayoutAlign.xs="center center">
-        <mat-card fxFlex.gt-xs="0 0 0%" fxFlex.xs="0 0 0" class="horizontal-shuffle-item touch-list-item" *ngFor="let choice of userChoices; let i = index" style="padding: 5px !important;white-space: nowrap;">
+        <mat-card fxFlex.gt-xs="0 0 0%" fxFlex.xs="0 0 0" class="horizontal-shuffle-item touch-list-item not-selectable-posterity" *ngFor="let choice of userChoices; let i = index" style="padding: 5px !important;white-space: nowrap;">
             <div [innerHTML]="choice" fittext></div>
         </mat-card>
     </div>

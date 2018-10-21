@@ -24,7 +24,7 @@ export class CompSort extends Comp {
         <div class="cat-container" *ngFor="let cat of userCats; let i = index" fittext>
             <div class="cat-header">{{cat.name}}</div>
             <mat-list [dragula]="'DRAG'" [(dragulaModel)]="cat.choices" class="sort-list">
-                <mat-list-item  class="touch-list-item sort-list-item" *ngFor="let item of cat.choices">
+                <mat-list-item  class="touch-list-item sort-list-item not-selectable-posterity" *ngFor="let item of cat.choices">
                     <mat-checkbox *ngIf="attempt; else dragndrop" [indeterminate]="getState(item) == -1" [checked]="getState(item) == 1" disabled></mat-checkbox>
                     <ng-template #dragndrop>
                         <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>

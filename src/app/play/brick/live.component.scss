@@ -180,3 +180,9 @@ mat-card, .sort-list > mat-list-item {
     background: #111F33;
     color: #fff;
 }
+
+/* Material stepper header overflow */
+::ng-deep .mat-horizontal-stepper-header-container {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
