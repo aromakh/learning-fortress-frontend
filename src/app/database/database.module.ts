@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { DatabaseService } from './database.service';
 
 @NgModule({
