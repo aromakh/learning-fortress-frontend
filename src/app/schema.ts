@@ -1,6 +1,6 @@
 // This is the representation of the data structures in the app.
 
-import { DocumentReference, DocumentSnapshot, CollectionReference, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { DocumentReference, DocumentSnapshot, CollectionReference, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 export function toRefOnly(doc: DatabaseDoc, fieldsToKeep?: any) : any {
     // A firebase document
