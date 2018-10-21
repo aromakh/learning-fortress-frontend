@@ -4,8 +4,8 @@
 firebase/*.json
 firebase/backup/brickattempts
 firebase/backup/teachers
-firebase/classes
-firebase/students
+firebase/backup/classes
+firebase/backup/students
 firebase/firebase-functions/functions/node_modules
 
 # compiled output
