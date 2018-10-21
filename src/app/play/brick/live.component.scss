@@ -180,15 +180,3 @@ mat-card, .sort-list > mat-list-item {
     background: #111F33;
     color: #fff;
 }
-
-@mixin user-select($select) {
-    -webkit-touch-callout:#{$select};
-    @each $pre in -webkit-, -moz-, -ms-, -o-, -khtml- {
-    #{$pre + user-select}: #{$select};
-    } 
-    #{user-select}: #{$select};
-  }
-  
-  .no-select {
-    @include user-select(none);
-  }
