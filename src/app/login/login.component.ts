@@ -12,6 +12,7 @@ import { AuthService } from "../auth/auth.service";
             </div>
             <user-type *ngIf="!sel" (select)="selected($event)"></user-type>
             <sign-in *ngIf="sel" [userType]="userType"></sign-in>
+                <img style="width:50%; margin-top: 20px" src="assets/brillder-2-logo.png" alt="lol"><br />
         </div>
     </div>
     `,
