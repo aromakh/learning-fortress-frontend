@@ -1,5 +1,10 @@
 <timer [timer]="timer"></timer>
 <mat-horizontal-stepper>
+    <ng-template matStepperIcon="number" let-index="index">
+        <ng-container *ngIf="index < 20">
+            <span [ngClass]="'icon-raw-blue-' + (index + 1)"></span>
+        </ng-container>
+    </ng-template>
     <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
         <ng-template matStepLabel></ng-template>
         <question *ngIf="!brickAttempt?.answers[index].correct" [question]="question" [attempt]="brickAttempt?.answers[index]"></question>

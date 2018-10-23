@@ -1,6 +1,6 @@
 import { FirebaseUIAuthConfig, AuthProvider, AuthMethods, CredentialHelper, FirebaseUIModule } from "firebaseui-angular";
-import { AngularFireModule } from "angularfire2"
-import { AngularFireAuthModule } from "angularfire2/auth";
+import { AngularFireModule } from "@angular/fire"
+import { AngularFireAuthModule } from "@angular/fire/auth";
 import { NgModule } from "@angular/core";
 import { environment } from "../../environments/environment";
 import { AuthService } from "./auth.service";

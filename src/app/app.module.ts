@@ -21,7 +21,7 @@ import { BuildModule } from './build/build.module';
 
 // Authentication
 import { AuthModule } from './auth/auth.module';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule } from '@angular/fire';
 import { DatabaseModule } from './database/database.module';
 
 

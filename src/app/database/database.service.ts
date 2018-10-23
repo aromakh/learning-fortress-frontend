@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { HttpHeaders } from '@angular/common/http';
-import { AngularFirestore, DocumentSnapshot, QuerySnapshot, DocumentReference, AngularFirestoreDocument, DocumentChangeAction, Action, AngularFirestoreCollection, QueryDocumentSnapshot } from 'angularfire2/firestore';
+import { AngularFirestore, DocumentSnapshot, QuerySnapshot, DocumentReference, AngularFirestoreDocument, DocumentChangeAction, Action, AngularFirestoreCollection, QueryDocumentSnapshot } from '@angular/fire/firestore';
 
 const headers = new HttpHeaders({
     'Content-Type':  'application/json'
