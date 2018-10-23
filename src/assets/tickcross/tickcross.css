@@ -9,7 +9,7 @@
   font-style: normal;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="tick-"], [class*=" tick-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'tickcross' !important;
   speak: none;
@@ -24,308 +24,308 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-FilledBlueCircleCross .path1:before {
+.tick-FilledBlueCircleCross .path1:before {
   content: "\e900";
   color: rgb(11, 59, 127);
 }
-.icon-FilledBlueCircleCross .path2:before {
+.tick-FilledBlueCircleCross .path2:before {
   content: "\e901";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledBlueCircleCross .path3:before {
+.tick-FilledBlueCircleCross .path3:before {
   content: "\e902";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledBlueCircleCross .path4:before {
+.tick-FilledBlueCircleCross .path4:before {
   content: "\e903";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledBlueCircleCross .path5:before {
+.tick-FilledBlueCircleCross .path5:before {
   content: "\e904";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledBlueCircleCross .path6:before {
+.tick-FilledBlueCircleCross .path6:before {
   content: "\e905";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledBlueRectCross .path1:before {
+.tick-FilledBlueRectCross .path1:before {
   content: "\e906";
   color: rgb(11, 59, 127);
 }
-.icon-FilledBlueRectCross .path2:before {
+.tick-FilledBlueRectCross .path2:before {
   content: "\e907";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledBlueRectCross .path3:before {
+.tick-FilledBlueRectCross .path3:before {
   content: "\e908";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledBlueRectCross .path4:before {
+.tick-FilledBlueRectCross .path4:before {
   content: "\e909";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledBlueRectCross .path5:before {
+.tick-FilledBlueRectCross .path5:before {
   content: "\e90a";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledBlueRectCross .path6:before {
+.tick-FilledBlueRectCross .path6:before {
   content: "\e90b";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledDenimBlueRectCross .path1:before {
+.tick-FilledDenimBlueRectCross .path1:before {
   content: "\e90c";
   color: rgb(0, 120, 179);
 }
-.icon-FilledDenimBlueRectCross .path2:before {
+.tick-FilledDenimBlueRectCross .path2:before {
   content: "\e90d";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledDenimBlueRectCross .path3:before {
+.tick-FilledDenimBlueRectCross .path3:before {
   content: "\e90e";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledDenimBlueRectCross .path4:before {
+.tick-FilledDenimBlueRectCross .path4:before {
   content: "\e90f";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledDenimBlueRectCross .path5:before {
+.tick-FilledDenimBlueRectCross .path5:before {
   content: "\e910";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledDenimBlueRectCross .path6:before {
+.tick-FilledDenimBlueRectCross .path6:before {
   content: "\e911";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledDenimBlueRectTick .path1:before {
+.tick-FilledDenimBlueRectTick .path1:before {
   content: "\e912";
   color: rgb(0, 120, 179);
 }
-.icon-FilledDenimBlueRectTick .path2:before {
+.tick-FilledDenimBlueRectTick .path2:before {
   content: "\e913";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledDenimBlueRectTick .path3:before {
+.tick-FilledDenimBlueRectTick .path3:before {
   content: "\e914";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledDenimBlueRectTick .path4:before {
+.tick-FilledDenimBlueRectTick .path4:before {
   content: "\e915";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledDenimBlueRectTick .path5:before {
+.tick-FilledDenimBlueRectTick .path5:before {
   content: "\e916";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledGreenCircleTick .path1:before {
+.tick-FilledGreenCircleTick .path1:before {
   content: "\e917";
   color: rgb(30, 165, 15);
 }
-.icon-FilledGreenCircleTick .path2:before {
+.tick-FilledGreenCircleTick .path2:before {
   content: "\e918";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledGreenCircleTick .path3:before {
+.tick-FilledGreenCircleTick .path3:before {
   content: "\e919";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledGreenCircleTick .path4:before {
+.tick-FilledGreenCircleTick .path4:before {
   content: "\e91a";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledGreenCircleTick .path5:before {
+.tick-FilledGreenCircleTick .path5:before {
   content: "\e91b";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledGreenRectTick .path1:before {
+.tick-FilledGreenRectTick .path1:before {
   content: "\e91c";
   color: rgb(30, 165, 15);
 }
-.icon-FilledGreenRectTick .path2:before {
+.tick-FilledGreenRectTick .path2:before {
   content: "\e91d";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledGreenRectTick .path3:before {
+.tick-FilledGreenRectTick .path3:before {
   content: "\e91e";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledGreenRectTick .path4:before {
+.tick-FilledGreenRectTick .path4:before {
   content: "\e91f";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledGreenRectTick .path5:before {
+.tick-FilledGreenRectTick .path5:before {
   content: "\e920";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledLightBlueCircleTick .path1:before {
+.tick-FilledLightBlueCircleTick .path1:before {
   content: "\e921";
   color: rgb(92, 193, 255);
 }
-.icon-FilledLightBlueCircleTick .path2:before {
+.tick-FilledLightBlueCircleTick .path2:before {
   content: "\e922";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledLightBlueCircleTick .path3:before {
+.tick-FilledLightBlueCircleTick .path3:before {
   content: "\e923";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledLightBlueCircleTick .path4:before {
+.tick-FilledLightBlueCircleTick .path4:before {
   content: "\e924";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledLightBlueCircleTick .path5:before {
+.tick-FilledLightBlueCircleTick .path5:before {
   content: "\e925";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledLightBlueRectTick .path1:before {
+.tick-FilledLightBlueRectTick .path1:before {
   content: "\e926";
   color: rgb(92, 193, 255);
 }
-.icon-FilledLightBlueRectTick .path2:before {
+.tick-FilledLightBlueRectTick .path2:before {
   content: "\e927";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledLightBlueRectTick .path3:before {
+.tick-FilledLightBlueRectTick .path3:before {
   content: "\e928";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledLightBlueRectTick .path4:before {
+.tick-FilledLightBlueRectTick .path4:before {
   content: "\e929";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledLightBlueRectTick .path5:before {
+.tick-FilledLightBlueRectTick .path5:before {
   content: "\e92a";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledRedCircleCross .path1:before {
+.tick-FilledRedCircleCross .path1:before {
   content: "\e92b";
   color: rgb(229, 0, 0);
 }
-.icon-FilledRedCircleCross .path2:before {
+.tick-FilledRedCircleCross .path2:before {
   content: "\e92c";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledRedCircleCross .path3:before {
+.tick-FilledRedCircleCross .path3:before {
   content: "\e92d";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledRedCircleCross .path4:before {
+.tick-FilledRedCircleCross .path4:before {
   content: "\e92e";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledRedCircleCross .path5:before {
+.tick-FilledRedCircleCross .path5:before {
   content: "\e92f";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledRedCircleCross .path6:before {
+.tick-FilledRedCircleCross .path6:before {
   content: "\e930";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledRedRectCross .path1:before {
+.tick-FilledRedRectCross .path1:before {
   content: "\e931";
   color: rgb(229, 0, 0);
 }
-.icon-FilledRedRectCross .path2:before {
+.tick-FilledRedRectCross .path2:before {
   content: "\e932";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledRedRectCross .path3:before {
+.tick-FilledRedRectCross .path3:before {
   content: "\e933";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledRedRectCross .path4:before {
+.tick-FilledRedRectCross .path4:before {
   content: "\e934";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledRedRectCross .path5:before {
+.tick-FilledRedRectCross .path5:before {
   content: "\e935";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-FilledRedRectCross .path6:before {
+.tick-FilledRedRectCross .path6:before {
   content: "\e936";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-NotFilledBlueCircleCross:before {
+.tick-NotFilledBlueCircleCross:before {
   content: "\e937";
   color: #0b3b7f;
 }
-.icon-NotFilledBlueRectCross:before {
+.tick-NotFilledBlueRectCross:before {
   content: "\e938";
   color: #0b3b7f;
 }
-.icon-NotFilledDenimBlueRectCross:before {
+.tick-NotFilledDenimBlueRectCross:before {
   content: "\e939";
   color: #0078b3;
 }
-.icon-NotFilledDenimBlueRectTick:before {
+.tick-NotFilledDenimBlueRectTick:before {
   content: "\e93a";
   color: #0078b3;
 }
-.icon-notFilledGreenCircleTick:before {
+.tick-notFilledGreenCircleTick:before {
   content: "\e93b";
   color: #1ea50f;
 }
-.icon-NotFilledGreenRectTick:before {
+.tick-NotFilledGreenRectTick:before {
   content: "\e93c";
   color: #1ea50f;
 }
-.icon-NotFilledLightBlueCircleTick:before {
+.tick-NotFilledLightBlueCircleTick:before {
   content: "\e93d";
   color: #5cc1ff;
 }
-.icon-NotFilledLightBlueRectTick:before {
+.tick-NotFilledLightBlueRectTick:before {
   content: "\e93e";
   color: #5cc1ff;
 }
-.icon-NotFilledRedCircleCross:before {
+.tick-NotFilledRedCircleCross:before {
   content: "\e93f";
   color: #e50000;
 }
-.icon-NotFilledRedRectCross:before {
+.tick-NotFilledRedRectCross:before {
   content: "\e940";
   color: #e50000;
 }

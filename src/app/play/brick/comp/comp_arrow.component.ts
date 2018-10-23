@@ -34,12 +34,14 @@ export class CompArrow extends Comp {
                            fxLayout="row"
                            fxLayoutAlign="space-around center" >
                 <ng-container *ngIf="attempt">
-                    <span class="tick-icon icon-FilledDenimBlueRectCross" *ngIf="getState(ind) != 1">
+                    <span class="tick-icon tick-FilledDenimBlueRectCross" *ngIf="getState(ind) != 1; else crossElement">
                         <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
                     </span>
-                    <span class="tick-icon icon-FilledDenimBlueRectTick" *ngIf="getState(ind) == 1">
-                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>
-                    </span>
+                    <ng-template #crossElement>
+                       <span class="tick-icon tick-FilledDenimBlueRectTick">
+                           <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>
+                       </span>
+                    </ng-template>
                     {{ data.data.reveals[getChoice(item)] }}
                 </ng-container>
                 <div class="arrow-item-text-left" fittext [minFontSize]="10" [innerHTML]="item"></div>
