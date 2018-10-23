@@ -20,12 +20,15 @@ export class CompShortAnswer extends Comp {
     selector: 'short-answer',
     template: `
     <p>{{data.data.text}}</p>
-    <div class="short-answer-container" fxLayout.gt-xs="row wrap" fxLayoutAlign.gt-xs="space-evenly center" fxLayout.xs="column">        
+    <div class="short-answer-container" fxLayout.gt-xs="row wrap" fxLayoutAlign.gt-xs="space-evenly center" fxLayout.xs="column">
         <div *ngFor="let entry of data.data.entries; let i = index" fxFlex="0 0 33%">
             <mat-checkbox *ngIf="attempt" [indeterminate]="getState(i) == -1" [checked]="getState(i) == 1" disabled></mat-checkbox>
             <mat-form-field>
                 <input matInput placeholder="{{entry.name}}" [(ngModel)]="userAnswers[i]" />
             </mat-form-field>
+            <div *ngIf="attempt && data.data.reveal && getState(i) != 1"
+                 class="reveal" fittext [minFontSize]="15"
+                 [innerHTML]="data.data.reveal"></div>
         </div>
     </div>
     `,
