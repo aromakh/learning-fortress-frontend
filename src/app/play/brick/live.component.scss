@@ -24,6 +24,7 @@ mat-card, .sort-list > mat-list-item {
 /* Arrow (mat-list-item), HorizontalShuffle (mat-card), Order (mat-list-item), Sort (mat-list-item) */
 .touch-list-item {
     touch-action: none;
+    height: 100% !important;
 }
 
 /**** Text Component ****/
@@ -100,6 +101,8 @@ mat-card, .sort-list > mat-list-item {
     min-width: 200px;
     outline: 2px dashed rgb(83, 83, 83);
     outline-offset: -5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .cat-header {
