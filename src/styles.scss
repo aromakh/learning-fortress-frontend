@@ -203,12 +203,14 @@ mat-card {
 }
 
 .mat-step-header .mat-step-icon {
+    text-align: center;
     background-color: white;
     color: #0B3B7F;
     border: 2px solid #0B3B7F;
 }
 
 .mat-step-header .mat-step-icon-not-touched {
+    text-align: center;
     background-color: #E1E1E1;
     color: #0B3B7F;
     border: 2px solid #0B3B7F;
