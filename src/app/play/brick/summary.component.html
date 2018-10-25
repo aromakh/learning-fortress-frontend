@@ -12,13 +12,6 @@
                 </mat-card-title>
                 <mat-card-content [innerHTML]="brick.summary"></mat-card-content>
             </mat-card>
-            <div class="score-container" fxLayout="column" fxLayoutAlign="center center">
-                <mat-progress-spinner diameter="300" mode="determinate" [value]="brickAttempt?.score * 100 / brickAttempt?.maxScore"></mat-progress-spinner>
-                <div class="numbers-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
-                    <div class="score-percentage">{{ (brickAttempt?.score * 100 / brickAttempt?.maxScore) | number:'0.0-0' }}%</div>
-                    <div class="score-number">{{ brickAttempt?.score }} / {{ brickAttempt?.maxScore }}</div>
-                </div>
-            </div>
         </div>
     </div>
 

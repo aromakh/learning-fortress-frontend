@@ -63,12 +63,12 @@ export class LiveComponent {
                 brick: this._brick._ref,
                 score: score,
                 maxScore: maxScore,
-                student: this.bricks.database.afs.doc("students/"+user.uid).ref,
+                student: this.bricks.database.afs.doc("students/" + user.uid).ref,
                 answers: answers
             };
             console.log(`score is ${score} out of ${maxScore}, which is ${score * 100 / maxScore}%`);
             this.bricks.currentBrickAttempt = ba;
-            this.router.navigate(["../summary"], { relativeTo: this.route });
+            this.router.navigate(['../provisionScore'], { relativeTo: this.route });
         })
     }
 

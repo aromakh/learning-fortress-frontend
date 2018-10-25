@@ -2,13 +2,24 @@
 <div class="container" [ngStyle.xs]="{ 'text-align': 'center' }"
     fxLayout="column" *ngIf="(aBrick | async) as brick">
     <h3>{{ brick.subject }}/{{ (aPallet | async)?.name }}/{{ ((brick.type | brickTime)/60000) }} minutes</h3>
-    <h1>{{ brick.title }}</h1>
+    <h1>Provisional Score</h1>
+
+    <div class="overflow">
+        <div class="data-container" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+            <div class="score-container" fxLayout="column" fxLayoutAlign="center center">
+                <mat-progress-spinner diameter="300" mode="determinate" [value]="brickAttempt?.score * 100 / brickAttempt?.maxScore"></mat-progress-spinner>
+                <div class="numbers-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+                    <div class="score-percentage">{{ (brickAttempt?.score * 100 / brickAttempt?.maxScore) | number:'0.0-0' }}%</div>
+                    <div class="score-number">{{ brickAttempt?.score }} / {{ brickAttempt?.maxScore }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="begin-row"
         fxLayout="row" fxLayoutAlign="start center">
-        <p>When you have read the summary, click the button.</p>
         <div fxFlex="1 0 0"></div>
-        <p class="begin-label">Review</p><a mat-fab class="fab-bottom" routerLink="../review"><mat-icon>play_arrow</mat-icon></a>
+        <p class="begin-label">Summary</p><a mat-fab class="fab-bottom" routerLink="../summary"><mat-icon>play_arrow</mat-icon></a>
     </div>
     <mat-accordion multi="true">
         <mat-expansion-panel expanded="false">
