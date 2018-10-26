@@ -112,6 +112,7 @@ export class MultipleChoiceComponent extends CompComponent {
 
         // Then, if the attempt scored no marks or negative and the program is in live phase, then give the student a mark.
         if (attempt.marks <= 0 && attempt.answer !== [] && !prev) { attempt.marks = 1; }
+        if (attempt.marks <= 0) {attempt.marks = 0; }
         return attempt;
     }
 
