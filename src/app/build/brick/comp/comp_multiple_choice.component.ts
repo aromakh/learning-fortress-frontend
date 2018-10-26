@@ -9,9 +9,9 @@ import { CompComponent } from "./comp.component";
 
 export class CompMultipleChoice extends Comp {
     name = "Multiple Choice";
-    data: { choices:string[], reveals:string[], correctAnswers: number }
+    data: { choices: string[], reveals: string[], correctAnswers: number }
 
-    constructor(data: { choices:string[], reveals:string[], correctAnswers: number }) {
+    constructor(data: { choices: string[], reveals: string[], correctAnswers: number }) {
         super();
         this.data = data;
     }
@@ -84,45 +84,34 @@ export class MultipleChoiceComponent extends CompComponent {
         }
     }
 
-    mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
-        // If the question is answered in review phase, add 2 to the mark and not 5.
-        let markIncrement = prev ? 2 : 5;
-        attempt.correct = true;
-        attempt.marks = 0;
-        // The maximum number of marks is the number of answers * 5.
-        attempt.maxMarks = this.data.data.correctAnswers * 5;
-        // For every option...
+    markLiveChoices(attempt, markIncrement) {
         this.data.data.choices.forEach((ans, i) => {
-            // if the option is within the set of correct answers...
-            if(i <= this.data.data.correctAnswers) {
-                // and the option doesn't correspond to one answer given...
-                if(attempt.answer.indexOf(i) == -1) {
-                    // the answer is not correct.
+            if (i <= this.data.data.correctAnswers - 1) {
+                if (attempt.answer.indexOf(i) === -1) {
                     attempt.correct = false;
                 } else {
-                    // if not, and the program is in the live phase...
-                    if(!prev) {
-                        // increase the marks by 5.
-                        attempt.marks += markIncrement;
-                    }
-                    // or the answer has changed between live and review...
-                    else if(prev.answer.indexOf(ans) == -1) {
-                        // increase the marks by 2.
-                        attempt.marks += markIncrement;
-                    }
+                    attempt.marks += markIncrement;
                 }
-            }
-            // if not...
-            else {
-                // and the option corresponds to one answer given...
-                if(attempt.answer.indexOf(i) != -1) {
-                    // the answer is not correct.
+            } else {
+                if (attempt.answer.indexOf(i) !== -1) {
+                    attempt.marks -= markIncrement;
                     attempt.correct = false;
                 }
             }
-        })
-        // Then, if the attempt scored no marks and the program is in live phase, then give the student a mark.
-        if(attempt.marks == 0 && attempt.answer != [] && !prev) attempt.marks = 1;
+        });
+    }
+
+    mark(attempt: ComponentAttempt, prev: ComponentAttempt): ComponentAttempt {
+        const markValue = 5;
+        const markIncrement = prev ? Math.floor(markValue / this.data.data.correctAnswers) : markValue;
+        attempt.correct = true;
+        attempt.marks = 0;
+
+        attempt.maxMarks = this.data.data.correctAnswers * markIncrement;
+        this.markLiveChoices(attempt, markIncrement);
+
+        // Then, if the attempt scored no marks or negative and the program is in live phase, then give the student a mark.
+        if (attempt.marks <= 0 && attempt.answer !== [] && !prev) { attempt.marks = 1; }
         return attempt;
     }
 

@@ -120,8 +120,8 @@ export class MultipleChoiceComponent extends CompComponent {
         attempt.maxMarks = this.data.data.correctAnswers * markIncrement;
         this.markLiveChoices(attempt, markIncrement);
 
-        // Then, if the attempt scored no marks and the program is in live phase, then give the student a mark.
-        if (attempt.marks === 0 && attempt.answer !== [] && !prev) { attempt.marks = 1; }
+        // Then, if the attempt scored no marks or negative and the program is in live phase, then give the student a mark.
+        if (attempt.marks <= 0 && attempt.answer !== [] && !prev) { attempt.marks = 1; }
         return attempt;
     }
 
