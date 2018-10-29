@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+var useragent = require('useragent');
 
 const app = express();
 
@@ -11,8 +12,25 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/learning-fortress-frontend'));
 
+function checkBrowserVersion(req) {
+    var agent = useragent.parse(req.headers['user-agent']);
+    console.log(agent);
+
+    switch(agent.family) {
+        case 'IE': if (agent.major < 11) return false;
+        case 'Firefox': if (agent.major < 67) return false;
+        case 'Chrome': if (agent.major < 67) return false;
+    }
+    return true;
+}
+
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/learning-fortress-frontend/index.html'));
+    const isVersionGood = checkBrowserVersion(req);
+    if (isVersionGood) {
+        res.sendFile(path.join(__dirname, 'dist/learning-fortress-frontend/index.html'));
+    } else {
+        res.sendFile(path.join(__dirname, 'dist/learning-fortress-frontend/assets/templates/badBrowserVersion.html'));
+    }
 });
 
 // Start the app by listening on the default Heroku port
