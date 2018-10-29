@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { Comp, ComponentAttempt } from '../../../schema';
 import { register } from './comp_index';
-import { CompComponent } from "./comp.component";
+import { CompComponent } from './comp.component';
 import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
 
 function shuffle(a) {
@@ -15,9 +15,9 @@ function shuffle(a) {
 
 export class CompOrder extends Comp {
     name = "Order";
-    data: { choices:string[], reveals?:string[], reveal?:string }
+    data: { choices: string[], reveals?: string[], reveal?: string }
 
-    constructor(data: { choices:string[], reveals?:string[], reveal:string }) {
+    constructor(data: { choices: string[], reveals?: string[], reveal: string }) {
         super();
         this.data = data;
     }
@@ -32,8 +32,12 @@ export class CompOrder extends Comp {
             <mat-list-item *ngFor="let choice of userChoices; let i = index" class="touch-list-item not-selectable-posterity">
                 <div fxLayout="column">
                     <div fxLayout="row">
-                        <span class="order-number">{{i+1}}</span>
-                        <div fittext>{{choice}}</div>
+                        <ng-container *ngIf="attempt; else dragndrop">
+                        </ng-container>
+                        <ng-template #dragndrop>
+                            <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
+                        </ng-template>
+                        <div class="order-number" fittext>{{choice}}</div>
                     </div>
                     <div *ngIf="attempt">
                         <!-- <div *ngIf="data.data.reveals" class="reveal">{{data.data.reveals[getChoice(choice)]}}</div> -->
@@ -63,13 +67,13 @@ export class OrderComponent extends CompComponent {
 
     @Input() data: CompOrder;
 
-    getAnswer() : number[] {
+    getAnswer(): number[] {
         return this.userChoices.map(val => this.data.data.choices.indexOf(val));
     }
 
     ngOnInit() {
         this.userChoices = shuffle(this.data.data.choices.slice());
-        if(this.attempt) {
+        if (this.attempt) {
             this.userChoices = this.attempt.answer.map(val => this.data.data.choices[val]);
         }
     }

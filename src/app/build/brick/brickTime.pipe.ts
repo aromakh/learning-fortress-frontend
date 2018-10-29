@@ -16,6 +16,12 @@ export class BrickTimePipe implements PipeTransform {
                 case 3:  return 1500000;
                 default: return 0;
             }
+            case "provisionalScore": switch(value) {
+                case 1:  return 200000;
+                case 2:  return 400000;
+                case 3:  return 600000;
+                default: return 0;
+            }
             case "summary": switch(value) {
                 case 1:  return 200000;
                 case 2:  return 400000;
