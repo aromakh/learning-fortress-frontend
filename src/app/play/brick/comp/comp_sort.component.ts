@@ -40,7 +40,7 @@ export class CompSort extends Comp {
         </div>
     </div>
     `,
-    styleUrls: ['../live.component.scss'],
+    styleUrls: ['./comp_sort.component.scss', '../live.component.scss'],
     providers: [
         {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop'}
     ]
