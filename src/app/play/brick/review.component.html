@@ -9,10 +9,18 @@
         <ng-template matStepLabel></ng-template>
         <question *ngIf="!brickAttempt?.answers[index].correct" [question]="question" [attempt]="brickAttempt?.answers[index]"></question>
         <div *ngIf="brickAttempt?.answers[index].correct">Question is correct!</div>
+        <br>
+        <div class="begin-row" style="padding-bottom: 85px;"
+            fxLayout="row" fxLayoutAlign="start center">
+            <div fxFlex="1 0 0"></div>
+            <ng-container *ngIf="index === (brick | async)?.questions.length - 1; else  next_button">
+                <p class="begin-label">Finish Brick Attempt</p>
+                <a mat-fab class="fab-bottom" (click)="finishBrick()"><mat-icon>play_arrow</mat-icon></a>
+            </ng-container>
+            <ng-template #next_button>
+                <p class="begin-label">Next - Don't panic, you can always come back</p>
+                <button class="fab-bottom" mat-fab mat-button matStepperNext><mat-icon>play_arrow</mat-icon></button>
+            </ng-template>
+        </div>
     </mat-step>
 </mat-horizontal-stepper>
-<div class="begin-row" style="padding-bottom: 85px;"
-    fxLayout="row" fxLayoutAlign="start center">
-    <div fxFlex="1 0 0"></div>
-    <p class="begin-label">Finish Brick Attempt</p><a mat-fab class="fab-bottom" (click)="finishBrick()"><mat-icon>play_arrow</mat-icon></a>
-</div>
