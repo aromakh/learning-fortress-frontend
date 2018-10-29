@@ -18,7 +18,7 @@ function checkBrowserVersion(req) {
 
     switch(agent.family) {
         case 'IE': if (agent.major < 11) return false;
-        case 'Firefox': if (agent.major < 67) return false;
+        case 'Firefox': if (agent.major < 61) return false;
         case 'Chrome': if (agent.major < 67) return false;
     }
     return true;
