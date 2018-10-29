@@ -18,11 +18,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReviewComponent } from './review.component';
 import { EndingComponent } from './ending.component';
 import { TimerComponent } from './timer.component';
+import { ProvisionalScoreComponent } from './provisional_score.component';
 
 @NgModule({
-    imports: [ BrickRoutingModule, CommonModule, MaterialModule, MatIconModule, DragulaModule, CompModule, NgArrayPipesModule, FlexLayoutModule ],
+    imports: [
+        BrickRoutingModule, CommonModule, MaterialModule, MatIconModule, DragulaModule, CompModule, NgArrayPipesModule, FlexLayoutModule
+    ],
     declarations: [
-        BrickComponent, TimerComponent, IntroductionComponent, LiveComponent, QuestionComponent, SummaryComponent, ReviewComponent, EndingComponent, BrickTimePipe
+        BrickComponent, TimerComponent, IntroductionComponent,
+        LiveComponent, QuestionComponent, ProvisionalScoreComponent, SummaryComponent, ReviewComponent, EndingComponent,
+        BrickTimePipe
     ],
     providers: [
         BrickTimePipe

@@ -20,12 +20,15 @@ import { EndingComponent } from './ending.component';
 import { TimerComponent } from './timer.component';
 import { ReversePipe } from '../../build/brick/comp/comp_reverse.pipe';
 import { DelayDragLiftDirective } from './drag.directive';
+import { ProvisionalScoreComponent } from './provisional_score.component';
 
 @NgModule({
-    imports: [ BrickRoutingModule, CommonModule, MaterialModule, MatIconModule, DragulaModule, CompModule, NgArrayPipesModule, FlexLayoutModule ],
+    imports: [
+        BrickRoutingModule, CommonModule, MaterialModule, MatIconModule, DragulaModule, CompModule, NgArrayPipesModule, FlexLayoutModule
+    ],
     declarations: [
-        BrickComponent, TimerComponent, IntroductionComponent, 
-        LiveComponent, QuestionComponent, SummaryComponent, 
+        BrickComponent, TimerComponent, IntroductionComponent,
+        LiveComponent, QuestionComponent, ProvisionalScoreComponent, SummaryComponent,
         ReviewComponent, EndingComponent, BrickTimePipe, ReversePipe,
         DelayDragLiftDirective
     ],
