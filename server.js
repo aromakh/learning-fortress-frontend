@@ -2,11 +2,13 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+var enforce = require('express-sslify');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(enforce.HTTPS({ trustAzureHeader: true, trustXForwardedHostHeader: true, trustProtoHeader: true }));
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/learning-fortress-frontend'));
