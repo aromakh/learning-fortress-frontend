@@ -22,7 +22,15 @@ export class CompShortAnswer extends Comp {
     <p>{{data.data.text}}</p>
     <div class="short-answer-container" fxLayout.gt-xs="row wrap" fxLayoutAlign.gt-xs="space-evenly center" fxLayout.xs="column">
         <div *ngFor="let entry of data.data.entries; let i = index" fxFlex="0 0 33%">
-            <mat-checkbox *ngIf="attempt" [indeterminate]="getState(i) == -1" [checked]="getState(i) == 1" disabled></mat-checkbox>
+            <ng-container *ngIf="attempt">
+                <span class="tick-icon tick-FilledDenimBlueRectTick" *ngIf="getState(i) == 1">
+                    <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>
+                </span>
+                <span class="tick-icon tick-FilledDenimBlueRectCross" *ngIf="getState(i) == -1">
+                    <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
+                </span>
+                <mat-checkbox *ngIf="getState(i) == 0" disabled></mat-checkbox>
+            </ng-container>
             <mat-form-field>
                 <input matInput placeholder="{{entry.name}}" [(ngModel)]="userAnswers[i]" />
             </mat-form-field>
