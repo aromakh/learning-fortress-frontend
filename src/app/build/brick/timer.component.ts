@@ -6,7 +6,7 @@ import { Timer } from "./timer.service";
     template: `
     <div class="timer-container">
         <mat-card class="timer">
-            {{ timer.timeLeft?.valueOf() / 1000 }} seconds
+            {{ timer.timeLeft?.valueOf() / 1000 }}
         </mat-card>
     </div>
     `,
