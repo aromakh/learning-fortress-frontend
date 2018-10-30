@@ -8,7 +8,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(enforce.HTTPS({ trustAzureHeader: true, trustXForwardedHostHeader: true, trustProtoHeader: true }));
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/learning-fortress-frontend'));
