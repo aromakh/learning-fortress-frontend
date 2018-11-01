@@ -5,9 +5,6 @@
             <span [ngClass]="'icon-raw-blue-' + (index + 1)"></span>
         </ng-container>
     </ng-template>
-    <ng-template matStepperIcon="edit">
-        <mat-icon>done</mat-icon>
-    </ng-template>
 
     <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
         <question [question]="question" ></question>
