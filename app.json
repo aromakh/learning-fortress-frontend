@@ -4,9 +4,6 @@
   "scripts": {
   },
   "env": {
-    "NPM_CONFIG_PRODUCTION": {
-      "required": false
-    }
   },
   "formation": {
     "web": {
