@@ -152,6 +152,17 @@ mat-card, .sort-list > mat-list-item {
     justify-content: center;
 }
 
+/**** TextDropdowns Component ****/
+
+.dropdoww-wrapper {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.dropdown-size {
+    height: 43px;
+}
+
 /* drag and drop box around right hand boxes */
 .arrow-text-right {
     outline: 1px dashed rgb(83, 83, 83);
