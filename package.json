@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "if [ $NPM_CONFIG_PRODUCTION ]; then ng build --aot --prod; fi"
+    "postinstall": "if [ $NPM_CONFIG_PRODUCTION ]; then ng build --aot --prod; else ng build; fi"
   },
   "engines": {
     "node": "8.11.3",
