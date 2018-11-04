@@ -27,9 +27,13 @@ mat-card, .sort-list > mat-list-item {
 }
 
 /**** Text Component ****/
-.comp-text-container {
+.comp-text-container, .comp-dropdown-container {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.comp-dropdown-container {
+    line-height: 50px;
 }
 
 /**** Poem Component ****/
@@ -154,9 +158,9 @@ mat-card, .sort-list > mat-list-item {
 
 /**** TextDropdowns Component ****/
 
-.dropdoww-wrapper {
-    padding-left: 10px;
-    padding-right: 10px;
+.dropdown-wrapper {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .dropdown-size {

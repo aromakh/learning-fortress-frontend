@@ -25,12 +25,10 @@ export class CompTextDropdowns extends Comp {
 @Component({
     selector: 'text-dropdowns',
     template: `
-    <div *ngIf="attempt">
-        <p fittext class="reveal" [maxFontSize]="15">{{ data.data.reveal }}</p>
-    </div>
-    <p class="text-highlighting">
-        <ng-container *ngFor="let word of words; let i = index">
-            <span> {{ word.word }} </span>
+    <div *ngIf="attempt && data.data.reveal" class="reveal" [innerHTML]="data.data.reveal" ></div>
+    <div class="comp-dropdown-container">
+        <ng-container *ngFor="let word of words; let i = index;">
+            <span  [innerHTML]="' '+word.word+' '"></span>
 
             <!-- Dropdown -->
             <ng-container *ngFor="let dropdown of data.data.dropdowns; let dropdownNum = index">
@@ -48,14 +46,14 @@ export class CompTextDropdowns extends Comp {
                                     {{choice}}
                                 </mat-option>
                             </mat-select>
-                            <mat-hint *ngIf="attempt && !isCorrect(dropdownNum, dropdown)" class="reveal">{{dropdown.reveal}}</mat-hint>
+                            <mat-hint *ngIf="attempt && !isCorrect(dropdownNum, dropdown) && dropdown.reveal" class="reveal" [innerHTML]="dropdown.reveal"></mat-hint>
                         </mat-form-field>
                     </span>
                 </ng-container>
             </ng-container>
 
         </ng-container>
-    </p>
+    </div>
     `,
     styleUrls: ["../live.component.scss"],
 })
@@ -89,6 +87,7 @@ export class TextDropdownsComponent extends CompComponent {
     ngOnInit() {
         this.words = this.data.data.text.split(' ').map((word) => ({ word: word }));
         if (this.attempt) {
+            this.answerChoices = [];
             this.answerChoices = this.attempt.answer;
         }
     }
