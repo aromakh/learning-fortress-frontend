@@ -215,3 +215,8 @@ mat-card {
     color: #0B3B7F;
     border: 2px solid #0B3B7F;
 }
+
+/* Hide stepper grey line */
+.mat-stepper-horizontal-line {
+    opacity: 0;
+}
