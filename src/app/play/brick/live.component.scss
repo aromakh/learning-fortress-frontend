@@ -27,9 +27,13 @@ mat-card, .sort-list > mat-list-item {
 }
 
 /**** Text Component ****/
-.comp-text-container {
+.comp-text-container, .comp-dropdown-container {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.comp-dropdown-container {
+    line-height: 50px;
 }
 
 /**** Poem Component ****/
@@ -150,6 +154,17 @@ mat-card, .sort-list > mat-list-item {
 .arrow-container {
     display: flex;
     justify-content: center;
+}
+
+/**** TextDropdowns Component ****/
+
+.dropdown-wrapper {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.dropdown-size {
+    height: 43px;
 }
 
 /* drag and drop box around right hand boxes */
