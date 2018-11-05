@@ -5,8 +5,12 @@
             <span [ngClass]="'icon-raw-blue-' + (index + 1)"></span>
         </ng-container>
     </ng-template>
-
     <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
+        <div style="height: 100%; flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center; align-items: center;">
+            <a mat-fab (click)="scrollLeft()" style="margin: 10px" title="scroll questions left"><mat-icon>navigate_before</mat-icon></a>
+            <a mat-fab (click)="scrollRigth()" style="margin: 10px" title="scroll questions right"><mat-icon>navigate_next</mat-icon></a>
+        </div>
+
         <question [question]="question" ></question>
         <br>
         <div class="begin-row" style="padding-bottom: 85px;" fxLayout="row" fxLayoutAlign="start center">

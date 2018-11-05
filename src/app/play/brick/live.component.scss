@@ -201,6 +201,6 @@ mat-card, .sort-list > mat-list-item {
 
 /* Material stepper header overflow */
 ::ng-deep .mat-horizontal-stepper-header-container {
-    overflow-x: scroll;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
