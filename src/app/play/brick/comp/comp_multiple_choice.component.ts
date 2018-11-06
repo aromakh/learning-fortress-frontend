@@ -112,8 +112,8 @@ export class MultipleChoiceComponent extends CompComponent {
     }
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt): ComponentAttempt {
-        const markValue = 5;
-        const markIncrement = prev ? Math.floor(markValue / this.data.data.correctAnswers) : markValue;
+        // If this is live then increment by 5, if review then increment by 2
+        const markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
 
@@ -122,6 +122,8 @@ export class MultipleChoiceComponent extends CompComponent {
 
         // Then, if the attempt scored no marks or negative and the program is in live phase, then give the student a mark.
         if (attempt.marks <= 0 && attempt.answer !== [] && !prev) { attempt.marks = 1; }
+        
+        // If in the review phase and the mark has ended up as -1 then reset to 0 additional marks
         if (attempt.marks <= 0) {attempt.marks = 0; }
         return attempt;
     }
