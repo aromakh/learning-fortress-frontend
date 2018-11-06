@@ -19,7 +19,7 @@ function isBrowserVersionGood(req) {
     var agent = useragent.parse(req.headers['user-agent']);
 
     switch(agent.family) {
-        case 'IE': if (agent.major < 11) return false;
+        case 'IE': if (agent.major < 13) return false;
         case 'Firefox': if (agent.major < 61) return false;
         case 'Chrome': if (agent.major < 67) return false;
     }
