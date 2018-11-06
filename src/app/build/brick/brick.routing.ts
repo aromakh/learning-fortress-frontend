@@ -14,7 +14,7 @@ const brickRoutes = [
         { path: 'intro', component: IntroductionComponent },
         { path: 'live', component: LiveComponent },
         { path: 'provisionScore', component: ProvisionalScoreComponent },
-        { path: 'summary', component: SummaryComponent },
+        { path: 'synthesis', component: SummaryComponent },
         { path: 'review', component: ReviewComponent },
         { path: 'ending', component: EndingComponent },
         { path: '', redirectTo: 'intro', pathMatch: 'full' }
