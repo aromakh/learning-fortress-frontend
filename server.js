@@ -11,12 +11,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
-// Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist/learning-fortress-frontend'));
+// serve logo for bad browser version page
+app.use(express.static('static'));
 
-function checkBrowserVersion(req) {
+/* Checking browser version */
+function isBrowserVersionGood(req) {
     var agent = useragent.parse(req.headers['user-agent']);
-    console.log(agent);
 
     switch(agent.family) {
         case 'IE': if (agent.major < 13) return false;
@@ -26,13 +26,23 @@ function checkBrowserVersion(req) {
     return true;
 }
 
-app.get('*', (req, res) => {
-    const isVersionGood = checkBrowserVersion(req);
-    if (isVersionGood) {
-        res.sendFile(path.join(__dirname, 'dist/learning-fortress-frontend/index.html'));
-    } else {
+function checkBrowserVersion(req, res, next) {
+    const isVersionGood = isBrowserVersionGood(req);
+    if (!isVersionGood) {
         res.sendFile(path.join(__dirname, 'dist/learning-fortress-frontend/assets/templates/badBrowserVersion.html'));
+        return;
     }
+    next();
+}
+
+app.use(checkBrowserVersion);
+/* Checking browser version */
+
+// Serve only the static files form the dist directory
+app.use(express.static(__dirname + '/dist/learning-fortress-frontend'));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/learning-fortress-frontend/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
