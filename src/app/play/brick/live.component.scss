@@ -38,8 +38,14 @@ mat-card, .sort-list > mat-list-item {
 
 /**** Poem Component ****/
 .comp-poem-container {
+    padding-top: 5px;
     display: flex;
     justify-content: center;
+}
+
+.comp-poem-content {
+    text-align-last: justify;
+    background: #e1e1e1;
 }
 
 /**** Reveal Component ****/
