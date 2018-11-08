@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { Comp, ComponentAttempt } from '../../../schema';
 import { register } from './comp_index';
-import { CompComponent } from "./comp.component";
+import { CompComponent } from './comp.component';
 import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
 
 function shuffle(a) {
@@ -77,26 +77,33 @@ export class ArrowComponent extends CompComponent {
     userCats: { choices: string[] }[];
 
     ngOnInit() {
-        this.userCats = this.data.data.categories.map((cat) => { return { choices: shuffle(cat.choices.slice()) }});
-        if(this.attempt) {
+        this.userCats = [{ choices: []}, { choices: []}];
+        this.userCats[0].choices = this.data.data.categories[0].choices.slice();
+        this.userCats[1].choices = shuffle(this.data.data.categories[1].choices.slice());
+
+        if (this.attempt) {
             this.userCats = [];
             this.attempt.answer[0].choice.forEach((choice, index) => {
                 this.userCats.push({ choices: [] });
-            })
+            });
             this.userCats = this.userCats.map((cat, index) => {
                 return {
                     choices: this.attempt.answer.map((choice, i) => {
                         return this.data.data.categories[index].choices[choice.choice[index]];
                     })
                 };
-            })
+            });
         }
     }
 
-    getAnswer() : { choice: number[] }[] {
-        var choices: { choice: number[] }[] = [];
+    getAnswer(): { choice: number[] }[] {
+        const choices: { choice: number[] }[] = [];
+
         this.userCats[0].choices.forEach((choice, index) => {
-            choices.push({ choice: this.userCats.map((cat, i) => { return this.data.data.categories[i].choices.indexOf(cat.choices[index]) }) })
+            choices.push({ choice: [
+                index,
+                this.data.data.categories[1].choices.indexOf(this.userCats[1].choices[index])
+            ]});
         });
         return choices;
     }
@@ -105,10 +112,10 @@ export class ArrowComponent extends CompComponent {
         return this.data.data.categories[0].choices.indexOf(choice);
     }
 
-    getState(index: number) : number {
-        let corr = this.attempt.answer[index].choice.every((ch, ind) => {
+    getState(index: number): number {
+        const corr = this.attempt.answer[index].choice.every((ch, ind) => {
             return ch == this.attempt.answer[index].choice[0];
-        })
+        });
         if(corr) {
             return 1;
         } else {
@@ -118,11 +125,10 @@ export class ArrowComponent extends CompComponent {
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
         // If the question is answered in review phase, add 2 to the mark and not 5.
-        let markIncrement = prev ? 2 : 5;
+        const markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
         attempt.maxMarks = 0;
-        console.log(attempt.answer);
         attempt.answer
             // Map every answer to its choice,
             .map(c => c.choice)
@@ -144,9 +150,7 @@ export class ArrowComponent extends CompComponent {
                         // increase the marks by 2.
                         attempt.marks += markIncrement;
                     }
-                }
-                // if not...
-                else {
+                } else {
                     // the answer is not correct.
                     attempt.correct = false;
                 }
