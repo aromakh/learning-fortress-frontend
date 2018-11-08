@@ -47,6 +47,6 @@ export class ProvisionalScoreComponent {
     }
 
     startBrick() {
-        this.router.navigate(['../summary'], { relativeTo: this.route })
+        this.router.navigate(['../synthesis'], { relativeTo: this.route })
     }
 }

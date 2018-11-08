@@ -5,8 +5,8 @@ import { Timer } from "./timer.service";
     selector: 'timer',
     template: `
     <div class="timer-container">
-        <mat-card class="timer">
-            {{ timer.timeLeft?.valueOf() / 1000 }} seconds
+        <mat-card class="timer" [ngStyle]="{color: isRed ? '#E30000' : 'black'}">
+            {{ timer.timeLeft?.valueOf() / 1000 }}
         </mat-card>
     </div>
     `,
@@ -29,4 +29,5 @@ import { Timer } from "./timer.service";
 })
 export class TimerComponent {
     @Input() timer: Timer;
+    @Input() isRed: boolean;
 }

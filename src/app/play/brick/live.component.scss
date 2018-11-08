@@ -27,9 +27,13 @@ mat-card, .sort-list > mat-list-item {
 }
 
 /**** Text Component ****/
-.comp-text-container {
+.comp-text-container, .comp-dropdown-container {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.comp-dropdown-container {
+    line-height: 50px;
 }
 
 /**** Poem Component ****/
@@ -58,6 +62,7 @@ mat-card, .sort-list > mat-list-item {
 .timer {
     font-size: 20px;
     background-color: #fff;
+    color: #E30000;
 }
 
 /**** Multiple/Single Choice Components ****/
@@ -151,6 +156,17 @@ mat-card, .sort-list > mat-list-item {
     justify-content: center;
 }
 
+/**** TextDropdowns Component ****/
+
+.dropdown-wrapper {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.dropdown-size {
+    height: 43px;
+}
+
 /* drag and drop box around right hand boxes */
 .arrow-text-right {
     outline: 1px dashed rgb(83, 83, 83);
@@ -185,7 +201,7 @@ mat-card, .sort-list > mat-list-item {
 
 /* Material stepper header overflow */
 ::ng-deep .mat-horizontal-stepper-header-container {
-    overflow-x: scroll;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
 
