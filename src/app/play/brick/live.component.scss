@@ -43,6 +43,9 @@ mat-card, .sort-list > mat-list-item {
     justify-content: center;
     background: #e1e1e1;
     margin-top:20px;
+}
+
+.rounded {
     -webkit-border-top-left-radius: 1px;
     -webkit-border-top-right-radius: 2px;
     -webkit-border-bottom-right-radius: 3px;
@@ -67,8 +70,7 @@ mat-card, .sort-list > mat-list-item {
 .reveal {
     background:#FFFC7F; 
     color: #000;
-    margin-top: 5px;
-    padding: 5px;
+    padding: 2px;
 }
 
 /**** Timer ****/
@@ -224,4 +226,9 @@ mat-card, .sort-list > mat-list-item {
 ::ng-deep .mat-horizontal-stepper-header-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+.tick-icon {
+    font-size: 24px;
+    margin-right: 5px;
 }

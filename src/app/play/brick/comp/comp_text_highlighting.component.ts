@@ -18,14 +18,19 @@ export class CompTextHighlighting extends Comp {
 @Component({
     selector: 'text-highlighting',
     template: `
-    <p *ngIf="attempt" fittext>{{ data.data.reveal }}</p>
-    <p class="text-highlighting">
+    <div *ngIf="attempt">
+        <span class="tick-icon tick-FilledDenimBlueRectCross">
+            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
+        </span>
+    </div>
+    <div class="text-highlighting">
         <span *ngFor="let word of words; let i = index"
               [highlight]="word.highlight"
               [state]="getState(i)"
               (click)="toggleHighlight(i)"
               [innerHTML]="' ' + word.word + ' '"></span>
-    </p>
+    </div>
+    <div *ngIf="attempt" fittext>{{ data.data.reveal }}</div>
     `,
     styleUrls: ['../live.component.scss']
 })
@@ -73,16 +78,15 @@ export class TextHighlightingComponent extends CompComponent {
         let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
-        // Then, the maximum number of marks is equal to the number of words needed * 5.
         attempt.maxMarks = this.data.data.words.length * 5;
-        // Then, for every word that should be highlighted...
+        
         this.data.data.words.forEach((word) => {
-            // if the word is not highlighted...
+            // if the word at index is not highlighted...
             if(attempt.answer.indexOf(word) == -1) {
                 // the answer is not correct.
                 attempt.correct = false;
             }
-            // if not...
+            // else it must be highlighted
             else {
                 // and the program is in live phase...
                 if(!prev) {
@@ -97,7 +101,7 @@ export class TextHighlightingComponent extends CompComponent {
             }
         })
         // Then, if the attempt scored no marks and the program is in live phase, then give the student a mark.
-        if(attempt.marks == 0 && attempt.answer.length != 0 && !prev) attempt.marks = 1;
+        if(attempt.marks == 0 && !prev) attempt.marks = 1;
         return attempt;
     }
 }

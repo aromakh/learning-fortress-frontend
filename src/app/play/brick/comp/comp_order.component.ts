@@ -28,31 +28,22 @@ export class CompOrder extends Comp {
     selector: 'order',
     template: `
     <div class="order-container" fxLayout="row">
+        <span *ngIf="attempt;" class="tick-icon tick-FilledDenimBlueRectCross">
+            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
+        </span>
         <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
             <mat-list-item *ngFor="let choice of userChoices; let i = index" class="arrow-text-right touch-list-item not-selectable-posterity">
                 <div fxLayout="column">
                     <div fxLayout="row">
-                        <ng-container *ngIf="attempt; else dragndrop">
-                        </ng-container>
-                        <ng-template #dragndrop>
-                            <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
-                        </ng-template>
-                        <div class="order-number" fittext>{{choice}}</div>
+                        <div class="order-number" fittext>
+                            {{choice}}
+                        </div>
                     </div>
                     <div *ngIf="attempt">
                         <!-- <div *ngIf="data.data.reveals" class="reveal">{{data.data.reveals[getChoice(choice)]}}</div> -->
                     </div>
                 </div>
             </mat-list-item>
-        </mat-list>
-        <mat-list *ngIf="attempt" fxLayout="column" fxLayoutAlign="center center">
-            <div *ngFor="let choice of userChoices; let i = index">
-                <mat-list-item *ngIf="i != 0">
-                    <mat-icon style="font-size: 32px" [inline]="true" class="rotate-90">redo</mat-icon>
-                    <div fxFlex="0 0 20px"></div>
-                    <mat-checkbox [indeterminate]="getState(i) == -1" [checked]="getState(i) == 1" disabled></mat-checkbox>
-                </mat-list-item>
-            </div>
         </mat-list>
     </div>
     <div class="reveal-container" *ngIf="attempt && data.data.reveal">{{data.data.reveal}}</div>
