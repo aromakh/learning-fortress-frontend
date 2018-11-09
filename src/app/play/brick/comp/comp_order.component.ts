@@ -46,7 +46,7 @@ export class CompOrder extends Comp {
             </mat-list-item>
         </mat-list>
     </div>
-    <div class="reveal-container" *ngIf="attempt && data.data.reveal">{{data.data.reveal}}</div>
+    <div class="reveal rounded" *ngIf="attempt && data.data.reveal" [innerHTML]="data.data.reveal"></div>
     `,
     styleUrls: ['../live.component.scss'],
     providers: [

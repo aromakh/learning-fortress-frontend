@@ -16,8 +16,8 @@ export class CompText extends Comp {
 @Component({
     selector: "reveal",
     template: `
-    <div *ngIf="attempt">
-        <div class="reveal" [innerHTML]="data.data.text">
+    <div *ngIf="attempt && data.data.text">
+        <div class="reveal rounded" [innerHTML]="data.data.text">
         </div>
     </div>
     `,

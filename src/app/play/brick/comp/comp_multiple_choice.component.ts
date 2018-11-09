@@ -47,7 +47,7 @@ export class CompMultipleChoice extends Comp {
                 <div fxFlex="1 0 0"></div>
                 <div fxLayout="column">
                     <div fittext [minFontSize]="15">{{ choice }}</div>
-                    <div *ngIf="attempt" class="reveal" fittext [minFontSize]="15">{{ data.data.reveals[getChoice(choice)] }}</div>
+                    <div *ngIf="attempt && data.data.reveals[getChoice(choice)]" class="reveal rounded" fittext [minFontSize]="15" [innerHTML]="data.data.reveals[getChoice(choice)]"></div>
                 </div>
                 <div fxFlex="1 0 0"></div>
             </div>

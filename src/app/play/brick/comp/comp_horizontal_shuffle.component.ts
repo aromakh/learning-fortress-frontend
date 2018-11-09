@@ -36,7 +36,7 @@ export class CompHorizontalShuffle extends Comp {
             <div [innerHTML]="choice" fittext></div>
         </mat-card>
     </div>
-    <p *ngIf="attempt" [innerHTML]="data.data.reveal"></p>
+    <div *ngIf="attempt && data.data.reveal" class="reveal rounded" [innerHTML]="data.data.reveal"></div>
     `,
     styleUrls: ['../live.component.scss']
 })

@@ -36,8 +36,8 @@ export class CompShortAnswer extends Comp {
                 <input matInput placeholder="{{entry.name}}" [(ngModel)]="userAnswers[i]" />
             </mat-form-field>
             <div *ngIf="attempt && data.data.reveal && getState(i) != 1"
-                 class="reveal" fittext [minFontSize]="15"
-                 [innerHTML]="data.data.reveal"></div>
+                class="reveal rounded" fittext [minFontSize]="15"
+                [innerHTML]="data.data.reveal"></div>
         </div>
     </div>
     `,

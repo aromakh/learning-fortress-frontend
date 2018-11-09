@@ -50,7 +50,7 @@ export class CompTextDropdowns extends Comp {
                                     {{choice}}
                                 </mat-option>
                             </mat-select>
-                            <mat-hint *ngIf="attempt && !isCorrect(dropdownNum, dropdown) && dropdown.reveal" class="reveal" [innerHTML]="dropdown.reveal"></mat-hint>
+                            <mat-hint *ngIf="attempt && !isCorrect(dropdownNum, dropdown) && dropdown.reveal" class="reveal rounded" [innerHTML]="dropdown.reveal"></mat-hint>
                         </mat-form-field>
                     </span>
                 </ng-container>

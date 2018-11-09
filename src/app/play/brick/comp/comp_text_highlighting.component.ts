@@ -30,7 +30,7 @@ export class CompTextHighlighting extends Comp {
               (click)="toggleHighlight(i)"
               [innerHTML]="' ' + word.word + ' '"></span>
     </div>
-    <div *ngIf="attempt" fittext>{{ data.data.reveal }}</div>
+    <div *ngIf="attempt && data.data.reveal" class="reveal rounded" fittext [innerHTML]="data.data.reveal"></div>
     `,
     styleUrls: ['../live.component.scss']
 })

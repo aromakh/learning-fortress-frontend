@@ -42,7 +42,7 @@ export class CompArrow extends Comp {
                            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>
                        </span>
                     </ng-template>
-                    <div *ngIf="attempt && data.data.reveals[getChoice(item)]" class="reveal rounded" fittext [minFontSize]="10">{{ data.data.reveals[getChoice(item)] }}</div>
+                    <div *ngIf="attempt && data.data.reveals[getChoice(item)]" class="reveal rounded" fittext [minFontSize]="10" [innerHTML]="data.data.reveals[getChoice(item)]"></div>
                 </ng-container>
                 <div class="arrow-item-text-left" fittext [minFontSize]="10" [innerHTML]="item"></div>
             </mat-list-item>

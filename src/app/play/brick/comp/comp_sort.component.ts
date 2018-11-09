@@ -38,8 +38,8 @@ export class CompSort extends Comp {
                     <ng-template #dragndrop>
                         <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
                     </ng-template>
-                    <div [innerHTML]="item"></div>
-                    <!-- <div *ngIf="attempt" class="reveal">{{ data.data.reveals[item] }}</div> -->
+                    <div [innerHTML]="item" style="margin-right:2px;"></div>
+                    <div *ngIf="attempt && data.data.reveals[item]" class="reveal rounded" [innerHTML]="data.data.reveals[item]"></div>
                 </mat-list-item>
             </mat-list>
         </div>
