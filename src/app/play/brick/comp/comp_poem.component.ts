@@ -17,7 +17,7 @@ export class CompText extends Comp {
     selector: "poem",
     template: `
     <div class="comp-poem-container">
-        <div class="comp-poem-content" [innerHTML]="data.data.text" fittext [maxFontSize]="15"></div>
+        <div class="comp-poem-content rounded" [innerHTML]="data.data.text" fittext [maxFontSize]="15"></div>
     </div>
     `,
     styleUrls: ["../live.component.scss"]

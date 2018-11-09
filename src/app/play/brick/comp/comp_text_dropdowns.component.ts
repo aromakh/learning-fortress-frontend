@@ -35,10 +35,14 @@ export class CompTextDropdowns extends Comp {
                 <ng-container *ngIf="dropdown.afterWord === i">
                     <span class="dropdown-wrapper">
                         <ng-container *ngIf="attempt">
-                            <mat-checkbox
-                                [indeterminate]="notCorrect(dropdownNum, dropdown)"
-                                [checked]="isCorrect(dropdownNum, dropdown)" disabled>
-                                </mat-checkbox>
+                            <span class="tick-icon tick-FilledDenimBlueRectCross" *ngIf="!isCorrect(dropdownNum, dropdown); else tickElement">
+                                <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
+                            </span>
+                            <ng-template #tickElement>
+                                <span class="tick-icon tick-FilledDenimBlueRectTick">
+                                    <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>
+                                </span>
+                            </ng-template>
                         </ng-container>
                         <mat-form-field [ngClass]="{'dropdown-size': !attempt}" (click)="hideAnswer(dropdown)">
                             <mat-select [placeholder]="dropdown.text" [(ngModel)]="answerChoices[dropdownNum].value">
