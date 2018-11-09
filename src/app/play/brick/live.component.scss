@@ -38,16 +38,40 @@ mat-card, .sort-list > mat-list-item {
 
 /**** Poem Component ****/
 .comp-poem-container {
+    padding: 5px;
     display: flex;
     justify-content: center;
+    background: #e1e1e1;
+    margin-top:20px;
+}
+
+.rounded {
+    -webkit-border-top-left-radius: 1px;
+    -webkit-border-top-right-radius: 2px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 4px;
+
+    -moz-border-radius-topleft: 1px;
+    -moz-border-radius-topright: 2px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 4px;
+
+    border-top-left-radius: 1px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 4px;
+}
+
+.comp-poem-content {
+    /*text-align-last: justify;*/
 }
 
 /**** Reveal Component ****/
 .reveal {
+    margin-top: 2px;
     background:#FFFC7F; 
     color: #000;
-    margin-top: 5px;
-    padding: 5px;
+    padding: 2px 5px;;
 }
 
 /**** Timer ****/
@@ -201,6 +225,11 @@ mat-card, .sort-list > mat-list-item {
 
 /* Material stepper header overflow */
 ::ng-deep .mat-horizontal-stepper-header-container {
-    overflow-x: scroll;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+.tick-icon {
+    font-size: 24px;
+    margin-right: 5px;
 }

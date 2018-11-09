@@ -4,7 +4,7 @@
     </div>
     <mat-grid-list cols="6" rowHeight="1:2" gutterSize="5px" class="pallet-list" [ngClass]="'theme-'+(pallet | async)?.subject">
         <mat-grid-tile class="text-inside-grid" routerLink="/play/brick/{{brick._ref.id}}" fxLayout.gt-xs="column" *ngFor="let brick of bricks | async" [ngClass]="'pallet-tile-'+brick.type" [colspan]="brick.type*brick.type-2*brick.type+3">
-            {{brick.title}}
+            {{brick.subject}}
         </mat-grid-tile>
     </mat-grid-list>
 </div>

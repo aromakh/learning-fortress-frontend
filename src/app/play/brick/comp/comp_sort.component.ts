@@ -24,17 +24,22 @@ export class CompSort extends Comp {
         <div class="cat-container" *ngFor="let cat of userCats; let i = index" fittext>
             <div class="cat-header">{{cat.name}}</div>
             <mat-list [dragula]="'DRAG'" [(dragulaModel)]="cat.choices" class="sort-list">
-                <mat-list-item class="touch-list-item sort-list-item not-selectable-posterity" *ngFor="let item of cat.choices">
-                    <mat-checkbox *ngIf="attempt; else dragndrop"
-                                  [indeterminate]="getState(item) == -1"
-                                  [checked]="getState(item) == 1"
-                                  disabled>
-                    </mat-checkbox>
+                <mat-list-item  class="touch-list-item sort-list-item not-selectable-posterity" *ngFor="let item of cat.choices">
+                    <ng-container *ngIf="attempt; else dragndrop">
+                        <span class="tick-icon tick-FilledDenimBlueRectTick" *ngIf="getState(item) == 1; else crossElement">
+                            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>
+                        </span>
+                        <ng-template #crossElement>
+                           <span class="tick-icon tick-FilledDenimBlueRectCross">
+                               <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
+                           </span>
+                        </ng-template>
+                    </ng-container>
                     <ng-template #dragndrop>
                         <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
                     </ng-template>
-                    <div [innerHTML]="item"></div>
-                    <!-- <div *ngIf="attempt" class="reveal">{{ data.data.reveals[item] }}</div> -->
+                    <div [innerHTML]="item" style="margin-right:2px;"></div>
+                    <div *ngIf="attempt && data.data.reveals[item]" class="reveal rounded" [innerHTML]="data.data.reveals[item]"></div>
                 </mat-list-item>
             </mat-list>
         </div>

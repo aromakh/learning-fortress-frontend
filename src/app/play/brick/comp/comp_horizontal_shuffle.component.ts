@@ -27,11 +27,16 @@ export class CompHorizontalShuffle extends Comp {
     selector: 'horizontal-shuffle',
     template: `
     <div class="horizontal-shuffle-container" [dragula]="'DRAG'" [(dragulaModel)]="userChoices" fxLayout.gt-xs="row wrap" fxLayout.xs="row wrap" fxLayoutAlign.xs="center center">
+        <ng-container *ngIf="attempt">
+            <span class="tick-icon tick-FilledDenimBlueRectCross">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
+            </span>
+        </ng-container>
         <mat-card fxFlex.gt-xs="0 0 0%" fxFlex.xs="0 0 0" class="horizontal-shuffle-item touch-list-item not-selectable-posterity" *ngFor="let choice of userChoices; let i = index" style="padding: 5px !important;white-space: nowrap;">
             <div [innerHTML]="choice" fittext></div>
         </mat-card>
     </div>
-    <p *ngIf="attempt" [innerHTML]="data.data.reveal"></p>
+    <div *ngIf="attempt && data.data.reveal" class="reveal rounded" [innerHTML]="data.data.reveal"></div>
     `,
     styleUrls: ['../live.component.scss']
 })

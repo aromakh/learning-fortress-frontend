@@ -46,7 +46,21 @@ export class LiveComponent {
         this.timer.countDown(time);
         this.timer.timeRanOut.subscribe((t) => {
             this.finishBrick();
-        })
+        });
+    }
+
+    getStepperScroll() {
+        return document.getElementsByClassName('mat-horizontal-stepper-header-container')[0];
+    }
+
+    scrollLeft() {
+        const el = this.getStepperScroll();
+        el.scrollLeft -= 30;
+    }
+
+    scrollRigth() {
+        const el = this.getStepperScroll();
+        el.scrollLeft += 30;
     }
 
     finishBrick() {
