@@ -9,6 +9,7 @@ import { BrickService } from './brick.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TimerService, Timer } from './timer.service';
 import { BrickTimePipe } from './brickTime.pipe';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'introduction',
@@ -16,14 +17,19 @@ import { BrickTimePipe } from './brickTime.pipe';
     styleUrls: ['./introduction.component.scss']
 })
 export class IntroductionComponent {
-    constructor(private bricks: BrickService, timer: TimerService, private brickTime: BrickTimePipe, private router: Router, private route: ActivatedRoute) {
-        this.timer = timer.new();
-        this.timer.timeResolution = 1000;
-        this.aBrick = bricks.currentBrick;
-        this.aBrick.subscribe(val => {
+    private html: string = "";
+
+    constructor(private bricks: BrickService, timer: TimerService, 
+        private brickTime: BrickTimePipe, private router: Router, 
+        private route: ActivatedRoute, private sanitizer: DomSanitizer) {
+            this.timer = timer.new();
+            this.timer.timeResolution = 1000;
+            this.aBrick = bricks.currentBrick;
+            this.aBrick.subscribe(val => {
             if(val != null) {
                 this.aPallet = bricks.currentPallet;
                 this.showBrick(val);
+                val.prep = this.sanitizer.bypassSecurityTrustHtml(val.prep) as string;
             }
         });
     }
