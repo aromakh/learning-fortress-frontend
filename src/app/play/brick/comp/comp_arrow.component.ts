@@ -47,12 +47,15 @@ export class CompArrow extends Comp {
                 <div class="arrow-item-text-left" fittext [minFontSize]="10" [innerHTML]="item"></div>
             </mat-list-item>
         </mat-list>
-        <mat-list [dragula]="'DRAG1'" [(dragulaModel)]="userCats[1].choices" class="arrow-list">
-            <mat-list-item style="cursor: pointer;"
-                           class="arrow-text-right touch-list-item not-selectable-posterity"
-                           *ngFor="let item of userCats[1].choices; let ind = index"
-                           fxLayout="row"
-                           fxLayoutAlign="space-around center">
+        <mat-list (drop)="drop($event)" (dragover)="allowDrop($event)" class="arrow-list">
+            <mat-list-item
+                    *ngFor="let item of userCats[1].choices; let ind = index"
+                    [id]="item"
+                    style="cursor: pointer;"
+                    draggable="true" (dragstart)="drag($event, item)"
+                    class="arrow-text-right touch-list-item not-selectable-posterity"
+                    fxLayout="row"
+                    fxLayoutAlign="space-around center">
                 <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
                 <div class="arrow-item-text-right" fittext [minFontSize]="10" [innerHTML]="item"></div>
             </mat-list-item>
@@ -100,6 +103,61 @@ export class ArrowComponent extends CompComponent {
         });
         return choices;
     }
+    allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    drag(ev, item) {
+        ev.dataTransfer.setData('item', item);
+    }
+
+    drop(ev) {
+        ev.preventDefault();
+
+        const dropItem = this.getParentRecursiveByName(ev.target, 'mat-list-item', 4);
+
+        if (dropItem) {
+            const dropChoice = dropItem.id;
+            const dragChoice = ev.dataTransfer.getData('item');
+
+            this.replaceChoices(dropChoice, dragChoice);
+        }
+    }
+
+    replaceChoices(choice1, choice2) {
+        const choices = this.userCats[1].choices.slice();
+
+        // get choices positions
+        let choice1Num = -1;
+        let choice2Num = -1;
+        choices.forEach((loopChoice, i) => {
+            if (loopChoice === choice1) { choice1Num = i; }
+            if (loopChoice === choice2) { choice2Num = i; }
+        });
+
+        // replacing positions
+        if (choice1Num !== -1 && choice2Num !== -1) {
+            const temp = choices[choice1Num];
+            choices[choice1Num] = choices[choice2Num]
+            choices[choice2Num] = temp;
+        }
+        // update list
+        this.userCats[1].choices = choices;
+    }
+
+    // maxCount -> max count of child elements child -> child -> parent to prevent infinity loop
+    getParentRecursiveByName(element, nodeName, maxCount) {
+        if (element.localName === nodeName) {
+            return element;
+        }
+        const count = maxCount - 1;
+
+        // prevent infinity
+        if (count < 0) {
+            return null;
+        }
+        return this.getParentRecursiveByName(element.parentElement, nodeName, count);
+    }
 
     getChoice(choice) {
         return this.data.data.categories[0].choices.indexOf(choice);
@@ -109,7 +167,7 @@ export class ArrowComponent extends CompComponent {
         const corr = this.attempt.answer[index].choice.every((ch, ind) => {
             return ch == this.attempt.answer[index].choice[0];
         });
-        if(corr) {
+        if (corr) {
             return 1;
         } else {
             return -1;
