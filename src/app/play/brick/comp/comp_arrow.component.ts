@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Comp, ComponentAttempt } from '../../../schema';
 import { register } from './comp_index';
@@ -47,18 +48,20 @@ export class CompArrow extends Comp {
                 <div class="arrow-item-text-left" fittext [minFontSize]="10" [innerHTML]="item"></div>
             </mat-list-item>
         </mat-list>
-        <mat-list (drop)="drop($event)" (dragover)="allowDrop($event)" class="arrow-list">
-            <mat-list-item
-                    *ngFor="let item of userCats[1].choices; let ind = index"
+        <mat-list cdkDropList (cdkDropListDropped)="drop($event)" class="arrow-list">
+            <ng-container *ngFor="let item of userCats[1].choices; let ind = index">
+                <mat-list-item
+                    cdkDrag
                     [id]="item"
                     style="cursor: pointer;"
-                    draggable="true" (dragstart)="drag($event, item)"
                     class="arrow-text-right touch-list-item not-selectable-posterity"
                     fxLayout="row"
                     fxLayoutAlign="space-around center">
-                <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
-                <div class="arrow-item-text-right" fittext [minFontSize]="10" [innerHTML]="item"></div>
-            </mat-list-item>
+
+                    <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
+                    <div class="arrow-item-text-right" fittext [minFontSize]="10" [innerHTML]="item"></div>
+                </mat-list-item>
+            </ng-container>
         </mat-list>
     </div>
     `,
@@ -111,52 +114,8 @@ export class ArrowComponent extends CompComponent {
         ev.dataTransfer.setData('item', item);
     }
 
-    drop(ev) {
-        ev.preventDefault();
-
-        const dropItem = this.getParentRecursiveByName(ev.target, 'mat-list-item', 4);
-
-        if (dropItem) {
-            const dropChoice = dropItem.id;
-            const dragChoice = ev.dataTransfer.getData('item');
-
-            this.replaceChoices(dropChoice, dragChoice);
-        }
-    }
-
-    replaceChoices(choice1, choice2) {
-        const choices = this.userCats[1].choices.slice();
-
-        // get choices positions
-        let choice1Num = -1;
-        let choice2Num = -1;
-        choices.forEach((loopChoice, i) => {
-            if (loopChoice === choice1) { choice1Num = i; }
-            if (loopChoice === choice2) { choice2Num = i; }
-        });
-
-        // replacing positions
-        if (choice1Num !== -1 && choice2Num !== -1) {
-            const temp = choices[choice1Num];
-            choices[choice1Num] = choices[choice2Num]
-            choices[choice2Num] = temp;
-        }
-        // update list
-        this.userCats[1].choices = choices;
-    }
-
-    // maxCount -> max count of child elements child -> child -> parent to prevent infinity loop
-    getParentRecursiveByName(element, nodeName, maxCount) {
-        if (element.localName === nodeName) {
-            return element;
-        }
-        const count = maxCount - 1;
-
-        // prevent infinity
-        if (count < 0) {
-            return null;
-        }
-        return this.getParentRecursiveByName(element.parentElement, nodeName, count);
+    drop(event: CdkDragDrop<{title: string, poster: string}[]>) {
+        moveItemInArray(this.userCats[1].choices, event.previousIndex, event.currentIndex);
     }
 
     getChoice(choice) {

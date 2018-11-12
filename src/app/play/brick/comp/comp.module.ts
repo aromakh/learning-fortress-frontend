@@ -5,6 +5,7 @@ import { DynamicModule } from 'ng-dynamic-component';
 import { NgArrayPipesModule } from 'ngx-pipes';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DragulaModule } from 'ng2-dragula';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { MaterialModule } from '../../../material.module';
 import { CompComponent } from './comp.component';
@@ -32,7 +33,8 @@ let dModule = DynamicModule.withComponents([
 
 @NgModule({
     imports: [
-        AngularFittextModule, CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, FlexLayoutModule, dModule
+        AngularFittextModule, CommonModule, FormsModule, DragulaModule, MaterialModule,
+        NgArrayPipesModule, FlexLayoutModule, dModule, DragDropModule
     ],
     declarations: [
         CompComponent, SingleChoiceComponent, MultipleChoiceComponent, TextComponent,
