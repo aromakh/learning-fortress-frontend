@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Comp, ComponentAttempt } from '../../../schema';
 import { register } from './comp_index';
@@ -47,15 +48,19 @@ export class CompArrow extends Comp {
                 <div class="arrow-item-text-left" fittext [minFontSize]="10" [innerHTML]="item"></div>
             </mat-list-item>
         </mat-list>
-        <mat-list [dragula]="'DRAG1'" [(dragulaModel)]="userCats[1].choices" class="arrow-list">
-            <mat-list-item style="cursor: pointer;"
-                           class="arrow-text-right touch-list-item not-selectable-posterity"
-                           *ngFor="let item of userCats[1].choices; let ind = index"
-                           fxLayout="row"
-                           fxLayoutAlign="space-around center">
-                <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
-                <div class="arrow-item-text-right" fittext [minFontSize]="10" [innerHTML]="item"></div>
-            </mat-list-item>
+        <mat-list cdkDropList (cdkDropListDropped)="drop($event)" class="arrow-list">
+            <ng-container *ngFor="let item of userCats[1].choices; let ind = index">
+                <mat-list-item
+                    cdkDrag
+                    [id]="item"
+                    style="cursor: pointer;"
+                    class="arrow-box arrow-text-right touch-list-item not-selectable-posterity"
+                    fxLayout="row"
+                    fxLayoutAlign="space-around center">
+                    <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
+                    <div class="arrow-item-text-right" fittext [minFontSize]="10" [innerHTML]="item"></div>
+                </mat-list-item>
+            </ng-container>
         </mat-list>
     </div>
     `,
@@ -100,6 +105,17 @@ export class ArrowComponent extends CompComponent {
         });
         return choices;
     }
+    allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    drag(ev, item) {
+        ev.dataTransfer.setData('item', item);
+    }
+
+    drop(event: CdkDragDrop<{title: string, poster: string}[]>) {
+        moveItemInArray(this.userCats[1].choices, event.previousIndex, event.currentIndex);
+    }
 
     getChoice(choice) {
         return this.data.data.categories[0].choices.indexOf(choice);
@@ -109,7 +125,7 @@ export class ArrowComponent extends CompComponent {
         const corr = this.attempt.answer[index].choice.every((ch, ind) => {
             return ch == this.attempt.answer[index].choice[0];
         });
-        if(corr) {
+        if (corr) {
             return 1;
         } else {
             return -1;

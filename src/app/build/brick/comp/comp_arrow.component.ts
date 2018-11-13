@@ -42,7 +42,7 @@ export class CompArrow extends Comp {
                 <mat-icon class="material-icons arrow-icon">arrow_right_alt</mat-icon>
             </mat-list-item>
         </mat-list> -->
-        <mat-list [dragula]="'DRAG1'" [(dragulaModel)]="userCats[1].choices" class="arrow-list">
+        <mat-list class="arrow-list">
             <mat-list-item style="cursor: pointer;" class="arrow-text-right touch-list-item" *ngFor="let item of userCats[1].choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
                 <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
                 <div class="arrow-item-text-right" fittext [minFontSize]="10">{{item}}</div>

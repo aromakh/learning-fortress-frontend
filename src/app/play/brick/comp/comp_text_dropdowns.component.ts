@@ -21,6 +21,14 @@ export class CompTextDropdowns extends Comp {
     }
 }
 
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
 @register('TextDropdowns')
 @Component({
     selector: 'text-dropdowns',
@@ -35,7 +43,8 @@ export class CompTextDropdowns extends Comp {
                 <ng-container *ngIf="dropdown.afterWord === i">
                     <span class="dropdown-wrapper">
                         <ng-container *ngIf="attempt">
-                            <span class="tick-icon tick-FilledDenimBlueRectCross" *ngIf="!isCorrect(dropdownNum, dropdown); else tickElement">
+                            <span class="tick-icon tick-FilledDenimBlueRectCross"
+                                  *ngIf="!isCorrect(dropdownNum, dropdown); else tickElement">
                                 <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
                             </span>
                             <ng-template #tickElement>
@@ -45,12 +54,15 @@ export class CompTextDropdowns extends Comp {
                             </ng-template>
                         </ng-container>
                         <mat-form-field [ngClass]="{'dropdown-size': !attempt}" (click)="hideAnswer(dropdown)">
-                            <mat-select [placeholder]="dropdown.text" [(ngModel)]="answerChoices[dropdownNum].value">
-                                <mat-option *ngFor="let choice of data.data.choices; let i = index" [value]="i">
+                            <mat-select [placeholder]="dropdown.text" [(ngModel)]="dropdown.value" (selectionChange)="setAnswerValue($event, dropdownNum)">
+                                <mat-option *ngFor="let choice of shuffleChoices; let i = index" [value]="choice">
                                     {{choice}}
                                 </mat-option>
                             </mat-select>
-                            <mat-hint *ngIf="attempt && !isCorrect(dropdownNum, dropdown) && dropdown.reveal" class="reveal rounded" [innerHTML]="dropdown.reveal"></mat-hint>
+                            <mat-hint
+                                *ngIf="attempt && !isCorrect(dropdownNum, dropdown) && dropdown.reveal"
+                                class="reveal rounded"
+                                [innerHTML]="dropdown.reveal"></mat-hint>
                         </mat-form-field>
                     </span>
                 </ng-container>
@@ -64,17 +76,20 @@ export class CompTextDropdowns extends Comp {
 export class TextDropdownsComponent extends CompComponent {
     words: { word: string }[];
     answerChoices: any[] = [];
+    shuffleChoices: any[] = [];
     _data: CompTextDropdowns;
 
     get data() { return this._data; }
     @Input()
     set data(data: CompTextDropdowns) {
-      this._data = data;
-      data.data.dropdowns.forEach(dropdown => this.answerChoices.push({value: -1}));
+        this._data = data;
+        this.shuffleChoices = shuffle(data.data.choices.slice());
+        data.data.dropdowns.forEach(dropdown => this.answerChoices.push({value: -1}));
     }
 
     isCorrect(dropdownNum, dropdown) {
-       return !dropdown.isTouched && this.answerChoices[dropdownNum].value === dropdown.correctChoiceNum;
+        const {value} = this.answerChoices[dropdownNum];
+        return !dropdown.isTouched && value === dropdown.correctChoiceNum;
     }
 
     notCorrect(dropdownNum, dropdown) {
@@ -88,11 +103,22 @@ export class TextDropdownsComponent extends CompComponent {
         }
     }
 
+    setAnswerValue(event, dropdownNum: number) {
+        const {value} = event;
+        this.answerChoices[dropdownNum].value = this.data.data.choices.indexOf(value);
+    }
+
     ngOnInit() {
         this.words = this.data.data.text.split(' ').map((word) => ({ word: word }));
         if (this.attempt) {
             this.answerChoices = [];
             this.answerChoices = this.attempt.answer;
+
+            // preselect answers -> attemp.answer[number] == dropdowns[number]
+            this.data.data.dropdowns.forEach((dropdown, number) => {
+                const choiceNumber = this.attempt.answer[number].value;
+                dropdown.value = this.data.data.choices[choiceNumber];
+            });
         }
     }
 
