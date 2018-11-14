@@ -21,9 +21,9 @@ mat-card, .sort-list > mat-list-item {
     cursor: pointer;
 }
 
-/* Arrow (mat-list-item), HorizontalShuffle (mat-card), Order (mat-list-item), Sort (mat-list-item) */
+/* Arrow (mat-list-item),8 HorizontalShuffle (mat-card), Order (mat-list-item), Sort (mat-list-item) */
 .touch-list-item {
-    touch-action: none;
+    /*touch-action: none;*/
 }
 
 /* Arrow drag list */
