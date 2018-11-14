@@ -68,9 +68,6 @@ export class SortComponent extends CompComponent {
             Object.keys(this.attempt.answer).forEach((val) => {
                 this.userCats[this.attempt.answer[val]].choices.push(val);
             });
-            this.userCats[0].choices = Object.keys(this.data.data.choices).filter(val => {
-                return this.attempt.answer[val] == undefined;
-            });
         }
     }
 
