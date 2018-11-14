@@ -24,11 +24,13 @@ import { RevealComponent } from './comp_reveal.component';
 import { AngularFittextModule } from 'angular-fittext';
 import { PoemComponent } from './comp_poem.component';
 import { TextDropdownsComponent } from './comp_text_dropdowns.component';
+import { LineHighlightingComponent } from './comp_line_highlighting.component';
 
 let dModule = DynamicModule.withComponents([
     SingleChoiceComponent, MultipleChoiceComponent,
     TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent,
-    TextHighlightingComponent, ArrowComponent, RevealComponent, PoemComponent, TextDropdownsComponent
+    TextHighlightingComponent, ArrowComponent, RevealComponent, PoemComponent, TextDropdownsComponent,
+    LineHighlightingComponent
 ]);
 
 @NgModule({
@@ -39,7 +41,7 @@ let dModule = DynamicModule.withComponents([
         CompComponent, SingleChoiceComponent, MultipleChoiceComponent, TextComponent,
         OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent,
         TextHighlightingComponent, ArrowComponent, RevealComponent, PoemComponent,
-        HighlightDirective, TextDropdownsComponent
+        HighlightDirective, TextDropdownsComponent, LineHighlightingComponent
     ],
     exports: [
         CompComponent, SingleChoiceComponent, MultipleChoiceComponent, TextComponent,
