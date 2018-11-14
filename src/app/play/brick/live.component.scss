@@ -35,8 +35,6 @@ mat-card, .sort-list > mat-list-item {
     overflow: hidden;
 }
 
-/* This broke the drag and drop - propose deletion as its not used anywhere else 
-14-11-18
 .arrow-box {
     border-bottom: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);
@@ -48,7 +46,6 @@ mat-card, .sort-list > mat-list-item {
     cursor: move;
     background: white;
 }
-*/
   
 .cdk-drag-preview {
     font-size: 8px;
