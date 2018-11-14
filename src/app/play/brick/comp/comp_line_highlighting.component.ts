@@ -6,9 +6,9 @@ import { CompComponent } from './comp.component';
 
 export class CompTextHighlighting extends Comp {
     name = 'Line Highlighting';
-    data: { text: string, lines: number[], reveal: string };
+    data: { text: Array<string>, lines: number[], reveal: string };
 
-    constructor(data: { text: string, lines: number[], reveal: string }) {
+    constructor(data: { text: Array<string>, lines: number[], reveal: string }) {
         super();
         this.data = data;
     }
@@ -51,7 +51,7 @@ export class LineHighlightingComponent extends CompComponent {
     }
 
     ngOnInit() {
-        this.lines = this.data.data.text.split('/n').map(line => ({ text: line, highlight: false }));
+        this.lines = this.data.data.text.map(line => ({ text: line, highlight: false }));
 
         if (this.attempt) {
             this.lines.forEach((line, index) => {
