@@ -54,7 +54,7 @@ export class CompArrow extends Comp {
                     cdkDrag
                     [id]="item"
                     style="cursor: pointer;"
-                    class="arrow-box arrow-text-right touch-list-item not-selectable-posterity"
+                    class="arrow-text-right touch-list-item not-selectable-posterity"
                     fxLayout="row"
                     fxLayoutAlign="space-around center">
                     <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
