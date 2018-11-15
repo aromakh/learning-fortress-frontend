@@ -47,7 +47,7 @@ export class CompSort extends Comp {
                     <div *ngIf="attempt && data.data.reveals[item]" class="reveal rounded" [innerHTML]="data.data.reveals[item]"></div>
                     <div *cdkDragPreview
                          style="padding: 3px; padding-left: 16px; padding-right: 16px; font: 500 16px/24px Montserrat"
-                         [innerHTML]="data.data.reveals[item]"></div>
+                         [innerHTML]="item"></div>
                 </mat-list-item>
             </mat-list>
         </div>
