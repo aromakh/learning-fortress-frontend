@@ -4,6 +4,7 @@ import { Comp, ComponentAttempt } from '../../../schema';
 import { register } from './comp_index';
 import { CompComponent } from './comp.component';
 import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
@@ -28,13 +29,17 @@ export class CompOrder extends Comp {
     selector: 'order',
     template: `
     <div class="order-container" fxLayout="row">
-        <span *ngIf="attempt;" class="tick-icon tick-FilledDenimBlueRectCross">
-            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
-        </span>
-        <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
-            <mat-list-item *ngFor="let choice of userChoices; let i = index" class="arrow-text-right touch-list-item not-selectable-posterity">
+        <mat-list cdkDropList (cdkDropListDropped)="drop($event)">
+            <mat-list-item
+                cdkDrag
+                *ngFor="let choice of userChoices; let i = index"
+                class="arrow-text-right touch-list-item not-selectable-posterity">
+
                 <div fxLayout="column">
                     <div fxLayout="row">
+                        <span *ngIf="attempt;" class="tick-icon tick-FilledDenimBlueRectCross">
+                            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
+                        </span>
                         <div class="order-number" fittext>
                             {{choice}}
                         </div>
@@ -68,6 +73,10 @@ export class OrderComponent extends CompComponent {
             this.userChoices = this.attempt.answer.map(val => this.data.data.choices[val]);
         }
     }
+
+    drop(event: CdkDragDrop<string[]>) {
+        moveItemInArray(this.userChoices, event.previousIndex, event.currentIndex);
+      }
 
     getChoice(choice) {
         return this.data.data.choices.indexOf(choice);
