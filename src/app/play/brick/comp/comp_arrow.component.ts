@@ -52,7 +52,6 @@ export class CompArrow extends Comp {
             <ng-container *ngFor="let item of userCats[1].choices; let ind = index">
                 <mat-list-item
                     cdkDrag
-                    [id]="item"
                     style="cursor: pointer;"
                     class="arrow-text-right touch-list-item not-selectable-posterity"
                     fxLayout="row"
@@ -104,13 +103,6 @@ export class ArrowComponent extends CompComponent {
             ]});
         });
         return choices;
-    }
-    allowDrop(ev) {
-        ev.preventDefault();
-    }
-
-    drag(ev, item) {
-        ev.dataTransfer.setData('item', item);
     }
 
     drop(event: CdkDragDrop<{title: string, poster: string}[]>) {
