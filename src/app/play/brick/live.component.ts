@@ -12,6 +12,7 @@ import { QuestionComponent } from './question.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import * as mojs from 'mo-js';
+// Important jquery may not look like it is being used but it really is
 import * as $ from 'jquery';
 
 function isIOSSafari() {
@@ -72,7 +73,7 @@ Animocon.prototype.options = {
     onUnCheck : function() { return false; }
 };
 
-// grid items:
+// Animocon animation function
 function init(buttons) {
     buttons.forEach(el1 => {
         const el1span = el1.querySelector('mat-icon');
@@ -84,7 +85,7 @@ function init(buttons) {
                     radius: {30: 90},
                     count: 6,
                     children : {
-                        fill: '#C0C1C3',
+                        fill: '#0076b4',
                         opacity: 0.6,
                         radius: 15,
                         duration: 1700,
@@ -97,7 +98,7 @@ function init(buttons) {
                     type: 			'circle',
                     radius: 		{0: 60},
                     fill: 			'transparent',
-                    stroke: 		'#C0C1C3',
+                    stroke: 		'#0076b4',
                     strokeWidth: {20: 0},
                     opacity: 		0.6,
                     duration: 	700,
@@ -105,6 +106,8 @@ function init(buttons) {
                 }),
                 // icon scale animation
                 new mojs.Tween({
+                    // This is longer than the slide transition to next question
+                    // But it seems to work ok at the moment
                     duration : 1200,
                     onUpdate: function(progress) {
                         if (progress > 0.3) {
@@ -118,81 +121,12 @@ function init(buttons) {
                 })
             ],
             onCheck : function() {
-                el1.style.color = '#988ADE';
+                el1.style.color = '#ffffff';
             },
             onUnCheck : function() {
-                el1.style.color = '#C0C1C3';
+                el1.style.color = '#0076b4';
             }
         });
-    });
-
-    // bursts when hovering the mo.js link
-    const molinkEl = document.querySelector('.special-link'),
-        moTimeline = new mojs.Timeline(),
-        moburst1 = new mojs.Burst({
-            parent: 			molinkEl,
-            count: 				6,
-            left: 				'0%',
-            top:  				'-50%',
-            radius: 			{0: 60},
-            children: {
-                fill : 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-                duration: 	1300,
-                easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
-            }
-        }),
-        moburst2 = new mojs.Burst({
-            parent: 	molinkEl,
-            left: '-100%', top: '-20%',
-            count: 		14,
-            radius: 		{0:120},
-            children: {
-                fill: 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-                duration: 	1600,
-                delay: 			100,
-                easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
-            }
-        }),
-        moburst3 = new mojs.Burst({
-            parent: 			molinkEl,
-            left: '130%', top: '-70%',
-            count: 				8,
-            radius: 			{0:90},
-            children: {
-                fill: 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-                duration: 	1500,
-                delay: 			200,
-                easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
-            }
-        }),
-        moburst4 = new mojs.Burst({
-            parent: molinkEl,
-            left: '-20%', top: '-150%',
-            count: 		14,
-            radius: 	{0:60},
-            children: {
-                fill: 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-                duration: 	2000,
-                delay: 			300,
-                easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
-            }
-        }),
-        moburst5 = new mojs.Burst({
-            parent: 	molinkEl,
-            count: 		12,
-            left: '30%', top: '-100%',
-            radius: 		{0:60},
-            children: {
-                fill: 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-                duration: 	1400,
-                delay: 			400,
-                easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
-            }
-        });
-
-    moTimeline.add(moburst1, moburst2, moburst3, moburst4, moburst5);
-    molinkEl.addEventListener('mouseenter', function() {
-        moTimeline.replay();
     });
 }
 
@@ -234,17 +168,17 @@ export class LiveComponent implements OnInit {
     }
 
     ngOnInit() {
+        // Poll to check for button elements with icobutton class
         setTimeout(function() {
             const items = [].slice.call(document.querySelectorAll('button.icobutton'));
-            console.log(items);
             init(items);
-        }, 400);
+        }, 500);
     }
 
     goForward(stepper) {
         setTimeout(function() {
             stepper.next();
-        }, 1400);
+        }, 500);
     }
 
     getStepperScroll() {
