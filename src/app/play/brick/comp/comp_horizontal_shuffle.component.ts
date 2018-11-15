@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Comp, ComponentAttempt } from '../../../schema';
 import { register } from './comp_index';
 import { CompComponent } from "./comp.component";
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
@@ -26,15 +27,14 @@ export class CompHorizontalShuffle extends Comp {
 @Component({
     selector: 'horizontal-shuffle',
     template: `
-    <div class="horizontal-shuffle-container" [dragula]="'DRAG'" [(dragulaModel)]="userChoices" fxLayout.gt-xs="row wrap" fxLayout.xs="row wrap" fxLayoutAlign.xs="center center">
-        <ng-container *ngIf="attempt">
-            <span class="tick-icon tick-FilledDenimBlueRectCross">
+    <div cdkDropList cdkDropListOrientation="horizontal" class="horizontal-shuffle-container" (cdkDropListDropped)="drop($event)">
+
+        <div class="horizontal-shuffle-item" *ngFor="let choice of userChoices" cdkDrag>
+            <span *ngIf="attempt" class="tick-icon tick-FilledDenimBlueRectCross">
                 <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
             </span>
-        </ng-container>
-        <mat-card fxFlex.gt-xs="0 0 0%" fxFlex.xs="0 0 0" class="horizontal-shuffle-item touch-list-item not-selectable-posterity" *ngFor="let choice of userChoices; let i = index" style="padding: 5px !important;white-space: nowrap;">
-            <div [innerHTML]="choice" fittext></div>
-        </mat-card>
+            <span [innerHTML]="choice"></span>
+        </div>
     </div>
     <div *ngIf="attempt && data.data.reveal" class="reveal rounded" [innerHTML]="data.data.reveal"></div>
     `,
@@ -52,8 +52,12 @@ export class HorizontalShuffleComponent extends CompComponent {
         }
     }
 
-    getAnswer() : number[] {
+    getAnswer(): number[] {
         return this.userChoices.map(val => this.data.data.choices.indexOf(val));
+    }
+
+    drop(event: CdkDragDrop<{title: string, poster: string}[]>) {
+        moveItemInArray(this.userChoices, event.previousIndex, event.currentIndex);
     }
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
