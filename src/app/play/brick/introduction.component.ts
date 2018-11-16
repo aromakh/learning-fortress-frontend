@@ -26,10 +26,13 @@ export class IntroductionComponent {
             this.timer.timeResolution = 1000;
             this.aBrick = bricks.currentBrick;
             this.aBrick.subscribe(val => {
-            if(val != null) {
+            if (val != null) {
                 this.aPallet = bricks.currentPallet;
                 this.showBrick(val);
-                val.prep = this.sanitizer.bypassSecurityTrustHtml(val.prep) as string;
+                if (!val.isPrepSafe) {
+                    val.prep = this.sanitizer.bypassSecurityTrustHtml(val.prep) as string;
+                    val.isPrepSafe = true;
+                }
             }
         });
     }

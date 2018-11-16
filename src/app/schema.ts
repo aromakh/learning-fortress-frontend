@@ -58,6 +58,7 @@ export interface Brick extends DatabaseDoc {
     avgScore: number;
     totalUsers: number;
     questions: Question[];
+    isPrepSafe: boolean;
 }
 
 export interface Pallet extends DatabaseDoc {
