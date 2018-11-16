@@ -33,15 +33,9 @@ export class CompOrder extends Comp {
         </span>
         <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
             <mat-list-item *ngFor="let choice of userChoices; let i = index" class="arrow-text-right touch-list-item not-selectable-posterity">
-                <div fxLayout="column">
-                    <div fxLayout="row">
-                        <div class="order-number" fittext>
-                            {{choice}}
-                        </div>
-                    </div>
-                    <div *ngIf="attempt">
-                        <!-- <div *ngIf="data.data.reveals" class="reveal">{{data.data.reveals[getChoice(choice)]}}</div> -->
-                    </div>
+                <p class="order-number" fittext [innerHTML]="choice">{{choice}}</p>
+                <div *ngIf="attempt">
+                    <!-- <div *ngIf="data.data.reveals" class="reveal">{{data.data.reveals[getChoice(choice)]}}</div> -->
                 </div>
             </mat-list-item>
         </mat-list>
