@@ -218,6 +218,7 @@ mat-card, .sort-list > mat-list-item {
 /**** Order component ****/
 .order-number {
     margin-right: 20px;
+    text-overflow: ellipsis;
 }
 
 
