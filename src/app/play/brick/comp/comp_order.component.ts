@@ -31,17 +31,15 @@ export class CompOrder extends Comp {
         <span *ngIf="attempt;" class="tick-icon tick-FilledDenimBlueRectCross">
             <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
         </span>
-        <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
-            <mat-list-item *ngFor="let choice of userChoices; let i = index" class="arrow-text-right touch-list-item not-selectable-posterity">
-                <div fxLayout="column">
-                    <div fxLayout="row">
-                        <div class="order-number" fittext>
-                            {{choice}}
-                        </div>
-                    </div>
-                    <div *ngIf="attempt">
-                        <!-- <div *ngIf="data.data.reveals" class="reveal">{{data.data.reveals[getChoice(choice)]}}</div> -->
-                    </div>
+        <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices" class="arrow-list">
+            <mat-list-item *ngFor="let choice of userChoices; let i = index" 
+            class="arrow-text-right touch-list-item not-selectable-posterity order-box" 
+            fxLayout="row"
+            fxLayoutAlign="space-around center">
+                <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
+                <div class="arrow-item-text-right" fittext [minFontSize]="10" [innerHTML]="choice"></div>
+                <div *ngIf="attempt">
+                    <!-- <div *ngIf="data.data.reveals" class="reveal">{{data.data.reveals[getChoice(choice)]}}</div> -->
                 </div>
             </mat-list-item>
         </mat-list>
