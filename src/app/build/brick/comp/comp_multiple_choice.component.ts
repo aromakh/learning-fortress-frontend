@@ -26,8 +26,8 @@ export class CompMultipleChoice extends Comp {
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <mat-checkbox *ngIf="attempt" [checked]="getState(choice) == 1" [indeterminate]="getState(choice) == -1" disabled></mat-checkbox>
                 <div fxLayout="column">
-                    <div fittext [minFontSize]="15">{{ choice }}</div>
-                    <div *ngIf="attempt" class="reveal" fittext [minFontSize]="15">{{ data.data.reveals[getChoice(choice)] }}</div>
+                    <div style="font-size: 15">{{ choice }}</div>
+                    <div *ngIf="attempt" class="reveal" style="font-size: 15">{{ data.data.reveals[getChoice(choice)] }}</div>
                 </div>
             </div>
         </mat-button-toggle>

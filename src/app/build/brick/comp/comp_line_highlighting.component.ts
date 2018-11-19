@@ -34,7 +34,7 @@ export class CompTextHighlighting extends Comp {
             <br/>
         </ng-container>
     </div>
-    <div *ngIf="attempt && data.data.reveal" class="reveal rounded" fittext [innerHTML]="data.data.reveal"></div>
+    <div *ngIf="attempt && data.data.reveal" class="reveal rounded" [innerHTML]="data.data.reveal"></div>
     `,
     styleUrls: ['../live.component.scss']
 })

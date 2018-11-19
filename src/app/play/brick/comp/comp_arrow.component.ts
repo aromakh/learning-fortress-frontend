@@ -43,9 +43,9 @@ export class CompArrow extends Comp {
                            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>
                        </span>
                     </ng-template>
-                    <div *ngIf="attempt && data.data.reveals[getChoice(item)]" class="reveal rounded" fittext [minFontSize]="10" [innerHTML]="data.data.reveals[getChoice(item)]"></div>
+                    <div *ngIf="attempt && data.data.reveals[getChoice(item)]" class="reveal rounded" [innerHTML]="data.data.reveals[getChoice(item)]"></div>
                 </ng-container>
-                <div class="arrow-item-text-left" fittext [minFontSize]="10" [innerHTML]="item"></div>
+                <div class="arrow-item-text-left" [innerHTML]="item"></div>
             </mat-list-item>
         </mat-list>
         <mat-list cdkDropList (cdkDropListDropped)="drop($event)" class="arrow-list">
@@ -58,7 +58,7 @@ export class CompArrow extends Comp {
                     fxLayout="row"
                     fxLayoutAlign="space-around center">
                     <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
-                    <div class="arrow-item-text-right" fittext [minFontSize]="10" [innerHTML]="item"></div>
+                    <div class="arrow-item-text-right" [innerHTML]="item"></div>
                 </mat-list-item>
             </ng-container>
         </mat-list>

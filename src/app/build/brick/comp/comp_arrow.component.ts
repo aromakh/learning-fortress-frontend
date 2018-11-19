@@ -31,8 +31,8 @@ export class CompArrow extends Comp {
         <mat-list>
             <mat-list-item touch-action="none" class="arrow-item-left touch-list-item" *ngFor="let item of userCats[0].choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center" >
                 <mat-checkbox *ngIf="attempt" [checked]="getState(ind) == 1" [indeterminate]="getState(ind) == -1" disabled></mat-checkbox>
-                <div *ngIf="attempt && data.data.reveals[getChoice(item)]" class="reveal" fittext [minFontSize]="10">{{ data.data.reveals[getChoice(item)] }}</div>
-                <div class="arrow-item-text-left" fittext [minFontSize]="10">{{item}}</div>
+                <div *ngIf="attempt && data.data.reveals[getChoice(item)]" class="reveal">{{ data.data.reveals[getChoice(item)] }}</div>
+                <div class="arrow-item-text-left">{{item}}</div>
             </mat-list-item>
         </mat-list>
         <!-- The first column has Arrow Graphics -->
@@ -45,7 +45,7 @@ export class CompArrow extends Comp {
         <mat-list class="arrow-list">
             <mat-list-item style="cursor: pointer;" class="arrow-text-right touch-list-item" *ngFor="let item of userCats[1].choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
                 <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
-                <div class="arrow-item-text-right" fittext [minFontSize]="10">{{item}}</div>
+                <div class="arrow-item-text-right">{{item}}</div>
             </mat-list-item>
         </mat-list>
     </div>

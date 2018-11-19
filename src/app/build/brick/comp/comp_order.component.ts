@@ -33,7 +33,7 @@ export class CompOrder extends Comp {
                 <div fxLayout="column">
                     <div fxLayout="row">
                         <span class="order-number">{{i+1}}</span>
-                        <div fittext>{{choice}}</div>
+                        <div>{{choice}}</div>
                     </div>
                     <div *ngIf="attempt">
                         <!-- <div *ngIf="data.data.reveals" class="reveal">{{data.data.reveals[getChoice(choice)]}}</div> -->

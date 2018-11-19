@@ -37,7 +37,7 @@ export class CompOrder extends Comp {
             fxLayout="row"
             fxLayoutAlign="space-around center">
                 <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
-                <div class="arrow-item-text-right" fittext [minFontSize]="10" [innerHTML]="choice"></div>
+                <div class="arrow-item-text-right" style="font-size: 15" [innerHTML]="choice"></div>
                 <div *ngIf="attempt">
                     <!-- <div *ngIf="data.data.reveals" class="reveal">{{data.data.reveals[getChoice(choice)]}}</div> -->
                 </div>

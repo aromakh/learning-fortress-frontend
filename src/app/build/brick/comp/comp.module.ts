@@ -21,7 +21,6 @@ import { HorizontalShuffleComponent } from './comp_horizontal_shuffle.component'
 import { TextHighlightingComponent } from './comp_text_highlighting.component';
 import { ArrowComponent } from './comp_arrow.component';
 import { RevealComponent } from './comp_reveal.component';
-import { AngularFittextModule } from 'angular-fittext';
 import { PoemComponent } from './comp_poem.component';
 import { TextDropdownsComponent } from './comp_text_dropdowns.component';
 import { LineHighlightingComponent } from './comp_line_highlighting.component';
@@ -35,7 +34,7 @@ let dModule = DynamicModule.withComponents([
 
 @NgModule({
     imports: [
-        AngularFittextModule, CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, FlexLayoutModule, dModule
+        CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, FlexLayoutModule, dModule
     ],
     declarations: [
         CompComponent, SingleChoiceComponent, MultipleChoiceComponent, TextComponent,

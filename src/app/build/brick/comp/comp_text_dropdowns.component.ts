@@ -22,7 +22,7 @@ export class CompTextDropdowns extends Comp {
 @Component({
     selector: 'text-dropdowns',
     template: `
-    <p *ngIf="attempt" fittext style="background: yellow">{{ data.data.reveal }}</p>
+    <p *ngIf="attempt" style="background: yellow">{{ data.data.reveal }}</p>
     <p class="text-highlighting">
         <ng-container *ngFor="let word of words; let i = index">
             <span> {{ word.word }} </span>

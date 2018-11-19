@@ -33,7 +33,7 @@ export class CompHorizontalShuffle extends Comp {
             </span>
         </ng-container>
         <mat-card fxFlex.gt-xs="0 0 0%" fxFlex.xs="0 0 0" class="horizontal-shuffle-item touch-list-item not-selectable-posterity" *ngFor="let choice of userChoices; let i = index" style="padding: 5px !important;white-space: nowrap;">
-            <div [innerHTML]="choice" fittext></div>
+            <div [innerHTML]="choice"></div>
         </mat-card>
     </div>
     <div *ngIf="attempt && data.data.reveal" class="reveal rounded" [innerHTML]="data.data.reveal"></div>
