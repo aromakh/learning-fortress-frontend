@@ -1,3 +1,7 @@
+<!-- this elements moving inside when loaded -->
+<a mat-fab (click)="scrollLeft()" id="scrollLeft" title="scroll questions left"><mat-icon>navigate_before</mat-icon></a>
+<a mat-fab (click)="scrollRigth()" id="scrollRight" title="scroll questions right"><mat-icon>navigate_next</mat-icon></a>
+
 <timer [timer]="timer" [isRed]="true"></timer>
 <mat-horizontal-stepper>
     <ng-template matStepperIcon="number" let-index="index">
@@ -6,7 +10,7 @@
         </ng-container>
     </ng-template>
     <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
-        <ng-template matStepLabel></ng-template>
+        <ng-template matStepLabel></ng-template> 
         <question *ngIf="!brickAttempt?.answers[index].correct" [question]="question" [attempt]="brickAttempt?.answers[index]"></question>
         <div *ngIf="brickAttempt?.answers[index].correct">Question is correct!</div>
         <br>

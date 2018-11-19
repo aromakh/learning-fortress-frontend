@@ -1,4 +1,4 @@
-import { Component, ViewChildren, QueryList, OnInit } from '@angular/core';
+import { Component, ViewChildren, QueryList, OnInit, ElementRef, AfterViewInit } from '@angular/core';
 
 import { BrickService } from './brick.service';
 
@@ -14,6 +14,7 @@ import { AuthService } from '../../auth/auth.service';
 import * as mojs from 'mo-js';
 // Important jquery may not look like it is being used but it really is
 import * as $ from 'jquery';
+import { Button } from 'protractor';
 
 function isIOSSafari() {
     let userAgent;
@@ -136,9 +137,12 @@ function init(buttons) {
     styleUrls: ['./live.component.scss'],
     providers: [ ]
 })
-export class LiveComponent implements OnInit {
-    constructor(public bricks: BrickService, timer: TimerService, brickTime: BrickTimePipe,
-        public router: Router, public route: ActivatedRoute, public auth: AuthService) {
+export class LiveComponent implements OnInit, AfterViewInit {
+    constructor(
+        public bricks: BrickService, timer: TimerService, brickTime: BrickTimePipe,
+        public router: Router, public route: ActivatedRoute, public auth: AuthService,
+        private elem: ElementRef
+    ) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
         this.timer.timeResolution = 1000;
@@ -193,6 +197,21 @@ export class LiveComponent implements OnInit {
     scrollRigth() {
         const el = this.getStepperScroll();
         el.scrollLeft += 30;
+    }
+
+    // when view is setted up add buttons to stepper by angular ref and row js
+    ngAfterViewInit() {
+        const element = this.elem.nativeElement.querySelectorAll('.mat-horizontal-stepper-header-container')[0];
+        element.style.display = 'inline-flex';
+
+        const scrollLeftBtn = this.elem.nativeElement.querySelectorAll('#scrollLeft')[0];
+        const scrollRightBtn = this.elem.nativeElement.querySelectorAll('#scrollRight')[0];
+
+        const stepper = element.parentElement;
+        stepper.insertBefore(scrollLeftBtn, element);
+        stepper.insertBefore(scrollRightBtn, element.nextSibling);
+
+        element.style.width = stepper.offsetWidth - scrollLeftBtn.offsetWidth - scrollRightBtn.offsetWidth - 5 + 'px';
     }
 
     finishBrick() {
