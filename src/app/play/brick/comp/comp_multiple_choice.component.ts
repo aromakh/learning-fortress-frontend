@@ -35,14 +35,12 @@ export class CompMultipleChoice extends Comp {
 
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <ng-container *ngIf="attempt">
-                    <span class="tick-icon tick-FilledDenimBlueRectCross" *ngIf="getState(choice) == 0; else tickElement">
+                    <span class="tick-icon tick-FilledDenimBlueRectTick" *ngIf="getState(choice) == 1">
+                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>
+                    </span>
+                    <span class="tick-icon tick-FilledDenimBlueRectCross" *ngIf="getState(choice) == -1">
                         <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
                     </span>
-                    <ng-template #tickElement>
-                        <span class="tick-icon tick-FilledDenimBlueRectTick">
-                            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>
-                        </span>
-                    </ng-template>
                 </ng-container>
                 <div fxFlex="1 0 0"></div>
                 <div fxLayout="column">
