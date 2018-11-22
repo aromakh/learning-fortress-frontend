@@ -185,34 +185,33 @@ export class LiveComponent implements OnInit, AfterViewInit {
         }, 500);
     }
 
+    /* Stepper header buttons */
     getStepperScroll() {
-        return document.getElementsByClassName('mat-horizontal-stepper-header-container')[0];
+        return this.elem.nativeElement.querySelectorAll('.mat-horizontal-stepper-header-container')[0];
     }
 
-    scrollLeft() {
-        const el = this.getStepperScroll();
-        el.scrollLeft -= 30;
-    }
+    scrollLeft(stepper) { stepper.previous(); }
+    scrollRigth(stepper) { stepper.next(); }
 
-    scrollRigth() {
-        const el = this.getStepperScroll();
-        el.scrollLeft += 30;
+    makeVisibleButton(button) {
+        button.style.position = 'relative';
+        button.style.opacity = 1;
     }
 
     // when view is setted up add buttons to stepper by angular ref and row js
     ngAfterViewInit() {
-        const element = this.elem.nativeElement.querySelectorAll('.mat-horizontal-stepper-header-container')[0];
-        element.style.display = 'inline-flex';
-
+        const element = this.getStepperScroll();
         const scrollLeftBtn = this.elem.nativeElement.querySelectorAll('#scrollLeft')[0];
         const scrollRightBtn = this.elem.nativeElement.querySelectorAll('#scrollRight')[0];
-
+        this.makeVisibleButton(scrollLeftBtn);
+        this.makeVisibleButton(scrollRightBtn);
+        element.style.display = 'inline-flex';
         const stepper = element.parentElement;
         stepper.insertBefore(scrollLeftBtn, element);
         stepper.insertBefore(scrollRightBtn, element.nextSibling);
-
         element.style.width = stepper.offsetWidth - scrollLeftBtn.offsetWidth - scrollRightBtn.offsetWidth - 5 + 'px';
     }
+    /* Stepper header buttons */
 
     finishBrick() {
         this.timer.stop();

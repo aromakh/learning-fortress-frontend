@@ -1,6 +1,6 @@
 <!-- this elements moving to other part of STEPPER when loaded -->
-<a mat-fab (click)="scrollLeft()" id="scrollLeft" title="scroll questions left"><mat-icon>navigate_before</mat-icon></a>
-<a mat-fab (click)="scrollRigth()" id="scrollRight" title="scroll questions right"><mat-icon>navigate_next</mat-icon></a>
+<a mat-fab style="position: absolute; opacity: 0" (click)="scrollLeft(stepper)" id="scrollLeft" title="scroll questions left"><mat-icon>navigate_before</mat-icon></a>
+<a mat-fab style="position: absolute; opacity: 0" (click)="scrollRigth(stepper)" id="scrollRight" title="scroll questions right"><mat-icon>navigate_next</mat-icon></a>
 
 <timer [timer]="timer" [isRed]="true"></timer>
 <mat-horizontal-stepper #stepper>
