@@ -1,4 +1,4 @@
-import { Component, ViewChildren, QueryList } from "@angular/core";
+import { Component, ViewChildren, QueryList, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Brick, BrickAttempt, QuestionAttempt } from "../../schema";
 import { Timer, TimerService } from "./timer.service";
@@ -7,13 +7,14 @@ import { BrickService } from "./brick.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../../auth/auth.service";
 import { QuestionComponent } from "./question.component";
+import { animateButtons } from "src/app/animocon/button";
 
 @Component({
     selector: 'live-review',
     templateUrl: './review.component.html',
     styleUrls: ['./live.component.scss']
 })
-export class ReviewComponent {
+export class ReviewComponent implements OnInit {
     constructor(public bricks: BrickService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public route: ActivatedRoute, public auth: AuthService) {
         this.brick = bricks.currentBrick.asObservable();
         this.brickAttempt = bricks.currentBrickAttempt;
@@ -48,6 +49,20 @@ export class ReviewComponent {
         })
     }
 
+    ngOnInit() {
+        // Poll to check for button elements with icobutton class
+        setTimeout(function() {
+            const items = [].slice.call(document.querySelectorAll('button.icobutton'));
+            animateButtons(items);
+        }, 500);
+    }
+
+    goForward(stepper) {
+        setTimeout(function() {
+            stepper.next();
+        }, 500);
+    }
+
     finishBrick() {
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
@@ -68,7 +83,9 @@ export class ReviewComponent {
             };
             console.log(`score is ${score} out of ${this.bricks.currentBrickAttempt.maxScore}, which is ${score * 100 / this.bricks.currentBrickAttempt.maxScore}%`);
             this.bricks.currentBrickAttempt = ba;
-            this.router.navigate(["../ending"], { relativeTo: this.route });
-        })
+            setTimeout(() => {
+                this.router.navigate(["../ending"], { relativeTo: this.route });
+            }, 500);
+        });
     }
 }
