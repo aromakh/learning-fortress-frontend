@@ -55,9 +55,7 @@ function shuffle(a) {
                         </ng-container>
                         <mat-form-field [ngClass]="{'dropdown-size': !attempt}" (click)="hideAnswer(dropdown)">
                             <mat-select [placeholder]="dropdown.text" [(ngModel)]="dropdown.value" (selectionChange)="setAnswerValue($event, dropdownNum)">
-                                <mat-option *ngFor="let choice of shuffleChoices; let i = index" [value]="choice">
-                                    {{choice}}
-                                </mat-option>
+                                <mat-option *ngFor="let choice of shuffleChoices; let i = index" [value]="choice" [innerHTML]="choice"></mat-option>
                             </mat-select>
                             <mat-hint
                                 *ngIf="attempt && !isCorrect(dropdownNum, dropdown) && dropdown.reveal"
