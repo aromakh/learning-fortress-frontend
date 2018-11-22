@@ -9,7 +9,6 @@ import { BrickService } from './brick.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TimerService, Timer } from './timer.service';
 import { BrickTimePipe } from './brickTime.pipe';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'introduction',
@@ -19,9 +18,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class IntroductionComponent {
     private html: string = "";
 
-    constructor(private bricks: BrickService, timer: TimerService, 
-        private brickTime: BrickTimePipe, private router: Router, 
-        private route: ActivatedRoute, private sanitizer: DomSanitizer) {
+    constructor(
+        private bricks: BrickService, timer: TimerService, private brickTime: BrickTimePipe,
+        private router: Router, private route: ActivatedRoute
+    ) {
             this.timer = timer.new();
             this.timer.timeResolution = 1000;
             this.aBrick = bricks.currentBrick;
@@ -29,10 +29,6 @@ export class IntroductionComponent {
             if (val != null) {
                 this.aPallet = bricks.currentPallet;
                 this.showBrick(val);
-                if (!val.isPrepSafe) {
-                    val.prep = this.sanitizer.bypassSecurityTrustHtml(val.prep) as string;
-                    val.isPrepSafe = true;
-                }
             }
         });
     }
