@@ -52,8 +52,6 @@ export class ProvisionalScoreComponent {
 
     next(audio) {
         audio.play();
-        setTimeout(() => {
-            this.router.navigate(['../synthesis'], { relativeTo: this.route });
-        }, 500);
+        audio.onended = this.startBrick.bind(this);
     }
 }

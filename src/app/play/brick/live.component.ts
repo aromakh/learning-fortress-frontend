@@ -84,6 +84,8 @@ export class LiveComponent implements OnInit {
         el.scrollLeft += 30;
     }
 
+    next() { this.router.navigate(['../provisionalScore'], { relativeTo: this.route }); }
+
     finishBrick(sound = null) {
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
@@ -106,11 +108,9 @@ export class LiveComponent implements OnInit {
             this.bricks.currentBrickAttempt = ba;
             if (sound) {
                 sound.play();
-                setTimeout(() => {
-                    this.router.navigate(['../provisionalScore'], { relativeTo: this.route });
-                }, 500);
+                sound.onended = this.next.bind(this);
             } else {
-                this.router.navigate(['../provisionalScore'], { relativeTo: this.route });
+                this.next();
             }
         });
     }

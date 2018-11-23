@@ -47,8 +47,6 @@ export class SummaryComponent {
 
     next(audio) {
         audio.play();
-        setTimeout(() => {
-            this.router.navigate(['../review'], { relativeTo: this.route });
-        }, 500);
+        audio.onended = this.startBrick.bind(this);
     }
 }

@@ -67,6 +67,8 @@ export class ReviewComponent implements OnInit {
         });
     }
 
+    next() { this.router.navigate(['../ending'], { relativeTo: this.route }); }
+
     finishBrick(sound = null) {
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
@@ -89,11 +91,9 @@ export class ReviewComponent implements OnInit {
             this.bricks.currentBrickAttempt = ba;
             if (sound) {
                 sound.play();
-                setTimeout(() => {
-                    this.router.navigate(["../ending"], { relativeTo: this.route });
-                }, 500);
+                sound.onended = this.next.bind(this);
             } else {
-                this.router.navigate(["../ending"], { relativeTo: this.route });
+                this.next();
             }
         });
     }
