@@ -1,3 +1,6 @@
+<audio #audioPlaceonTable>
+    <source src="assets/sounds/sport_pool_snooker_rack_triangle_place_down_on_table.mp3" type="audio/mpeg">
+</audio>
 <div class="container" [ngStyle.xs]="{ 'text-align': 'center' }"
     fxLayout="column" *ngIf="(aBrick | async) as brick">
     <h3>{{ brick.subject }}/{{ (aPallet | async)?.name }}/{{ brick.type | brickTime | date: 'm' }} minutes</h3>
@@ -18,7 +21,8 @@
     <div class="begin-row"
         fxLayout="row" fxLayoutAlign="start center">
         <div fxFlex="1 0 0"></div>
-        <p class="begin-label">Return to Dashboard</p><a mat-fab class="fab-bottom" (click)="finish()"><mat-icon>play_arrow</mat-icon></a>
+        <p class="begin-label">Return to Dashboard</p>
+        <a mat-fab class="fab-bottom" (click)="finish(audioPlaceonTable)"><mat-icon>play_arrow</mat-icon></a>
     </div>
     <mat-accordion multi="true">
         <mat-expansion-panel expanded="false">

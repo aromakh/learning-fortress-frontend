@@ -37,6 +37,7 @@ export class LiveComponent implements OnInit {
         });
     }
 
+    Sounds = Sounds;
     brick: Observable<Brick>;
     timer: Timer;
 
@@ -62,12 +63,13 @@ export class LiveComponent implements OnInit {
         }, 500);
     }
 
-    goForward(stepper, audio) {
+    goForward(stepper, audios: Array<HTMLElement>) {
         setTimeout(function() {
             stepper.next();
-            console.log(audio);
-            audio.play();
         }, 500);
+        audios.forEach(audio => {
+            setTimeout(function() { audio.play(); }, parseInt(audio.getAttribute('delay'), 10));
+        });
     }
 
     getStepperScroll() {
@@ -84,7 +86,9 @@ export class LiveComponent implements OnInit {
         el.scrollLeft += 30;
     }
 
-    finishBrick() {
+    finishBrick(sound) {
+        sound.play();
+
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
 

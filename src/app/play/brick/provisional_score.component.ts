@@ -49,4 +49,11 @@ export class ProvisionalScoreComponent {
     startBrick() {
         this.router.navigate(['../synthesis'], { relativeTo: this.route })
     }
+
+    next(audio) {
+        audio.play();
+        setTimeout(() => {
+            this.router.navigate(['../synthesis'], { relativeTo: this.route });
+        }, 500);
+    }
 }

@@ -1,3 +1,11 @@
+<audio #audioPlaceonTable delay=0>
+    <source src="assets/sounds/sport_pool_snooker_rack_triangle_place_down_on_table.mp3" type="audio/mpeg">
+</audio>
+    
+<audio #audioTurnPage delay=400>
+    <source src="assets/sounds/zapsplat_household_magazine_glossy_page_turn_002.mp3" type="audio/mpeg">
+</audio>
+
 <timer [timer]="timer" [isRed]="true"></timer>
 <mat-horizontal-stepper #stepper>
     <ng-template matStepperIcon="number" let-index="index">
@@ -15,11 +23,11 @@
             <div fxFlex="1 0 0"></div>
             <ng-container *ngIf="index === (brick | async)?.questions.length - 1; else  next_button">
                 <p class="begin-label">Finish Brick Attempt</p>
-                <button mat-fab class="fab-bottom icobutton" (click)="finishBrick()"><mat-icon>play_arrow</mat-icon></button>
+                <button mat-fab class="fab-bottom icobutton" (click)="finishBrick(audioPlaceonTable)"><mat-icon>play_arrow</mat-icon></button>
             </ng-container>
             <ng-template #next_button>
                 <p class="begin-label">Next - Don't panic, you can always come back</p>
-                <button class="fab-bottom icobutton" mat-fab mat-button (click)="goForward(stepper)"><mat-icon>play_arrow</mat-icon></button>
+                <button class="fab-bottom icobutton" mat-fab mat-button (click)="goForward(stepper, [audioTurnPage, audioPlaceonTable])"><mat-icon>play_arrow</mat-icon></button>
             </ng-template>
         </div>
     </mat-step>

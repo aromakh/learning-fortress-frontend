@@ -54,17 +54,23 @@ export class ReviewComponent implements OnInit {
         // Poll to check for button elements with icobutton class
         setTimeout(function() {
             const items = [].slice.call(document.querySelectorAll('button.icobutton'));
-            animateButtons(items, [{src: Sounds.placeOnTable, delay: 50}]);
+            animateButtons(items, []);
         }, 500);
     }
 
-    goForward(stepper) {
+    goForward(stepper, audios) {
         setTimeout(function() {
             stepper.next();
         }, 500);
+
+        audios.forEach(audio => {
+            setTimeout(function() { audio.play(); }, parseInt(audio.getAttribute('delay'), 10));
+        });
     }
 
-    finishBrick() {
+    finishBrick(sound) {
+        sound.play();
+
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
 

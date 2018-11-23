@@ -31,9 +31,12 @@ export class EndingComponent {
         bricks.publishBrickAttempt(this.brickAttempt);
     }
 
-    finish() {
+    finish(audio) {
+        audio.play();
         this.bricks.currentBrick = null;
         this.bricks.currentBrickAttempt = null;
-        this.router.navigate(['play', 'pallet', this._brick.pallet.id])
+        setTimeout(() => {
+            this.router.navigate(['play', 'pallet', this._brick.pallet.id])
+        }, 500);
     }
 }

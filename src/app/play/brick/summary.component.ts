@@ -44,4 +44,11 @@ export class SummaryComponent {
     startBrick() {
         this.router.navigate(['../review'], { relativeTo: this.route })
     }
+
+    next(audio) {
+        audio.play();
+        setTimeout(() => {
+            this.router.navigate(['../review'], { relativeTo: this.route });
+        }, 500);
+    }
 }
