@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../../auth/auth.service";
 import { QuestionComponent } from "./question.component";
 import { animateButtons } from "src/app/animocon/button";
+import { Sounds } from "src/app/sounds/sounds";
 
 @Component({
     selector: 'live-review',
@@ -53,7 +54,7 @@ export class ReviewComponent implements OnInit {
         // Poll to check for button elements with icobutton class
         setTimeout(function() {
             const items = [].slice.call(document.querySelectorAll('button.icobutton'));
-            animateButtons(items);
+            animateButtons(items, [{src: Sounds.placeOnTable, delay: 50}]);
         }, 500);
     }
 
