@@ -18,10 +18,16 @@ export class BrickService {
     currentPallet: Observable<Pallet>;
     currentBrickAttempt: BrickAttempt;
 
+    /*
+      This function called once for each brick.
+      All manipulation with bricks should be here like sanitizering HTML content.
+    */
     loadBrick(id: string) {
         this.currentBrick = this.database.getBrick(id);
+
         this.currentBrick.subscribe(val => {
             if (val) {
+                // Sanitize brick when it was load in service
                 val.prep = this.sanitizer.bypassSecurityTrustHtml(val.prep) as string;
                 this.currentPallet = this.database.getPallet(val.pallet.id);
             }
