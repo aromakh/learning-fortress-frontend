@@ -11,7 +11,6 @@ import { CompComponent } from './comp/comp.component';
 import { QuestionComponent } from './question.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
-import {Sounds} from '../../sounds/sounds';
 // Important jquery may not look like it is being used but it really is
 import * as $ from 'jquery';
 import { animateButtons } from 'src/app/animocon/button';
@@ -37,7 +36,6 @@ export class LiveComponent implements OnInit {
         });
     }
 
-    Sounds = Sounds;
     brick: Observable<Brick>;
     timer: Timer;
 

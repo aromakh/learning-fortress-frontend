@@ -8,7 +8,6 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../../auth/auth.service";
 import { QuestionComponent } from "./question.component";
 import { animateButtons } from "src/app/animocon/button";
-import { Sounds } from "src/app/sounds/sounds";
 
 @Component({
     selector: 'live-review',
