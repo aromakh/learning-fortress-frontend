@@ -58,13 +58,15 @@ export class LiveComponent implements OnInit {
         setTimeout(function() {
             const items = [].slice.call(document.querySelectorAll('button.icobutton'));
             // params: buttons and sound effects
-            animateButtons(items, [{src: Sounds.placeOnTable, delay: 50}, {src: Sounds.pageTurn, delay: 400}]);
+            animateButtons(items, []);
         }, 500);
     }
 
-    goForward(stepper) {
+    goForward(stepper, audio) {
         setTimeout(function() {
             stepper.next();
+            console.log(audio);
+            audio.play();
         }, 500);
     }
 

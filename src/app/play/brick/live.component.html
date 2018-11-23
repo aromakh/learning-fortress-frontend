@@ -1,3 +1,8 @@
+<audio #audio>
+    <source src="assets/sounds/sport_pool_snooker_rack_triangle_place_down_on_table.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
 <timer [timer]="timer" [isRed]="true"></timer>
 <mat-horizontal-stepper #stepper>
     <ng-template matStepperIcon="number" let-index="index">
@@ -22,7 +27,9 @@
             </ng-container>
             <ng-template #next_button>
                 <p class="begin-label">Next - Don't panic, you can always come back</p>
-                <button class="fab-bottom icobutton" mat-fab mat-button (click)="goForward(stepper)"><mat-icon>play_arrow</mat-icon></button>
+                <button class="fab-bottom icobutton" mat-fab mat-button src="assets/sounds/sport_pool_snooker_rack_triangle_place_down_on_table.mp3" (click)="goForward(stepper, audio)">
+                    <mat-icon>play_arrow</mat-icon>
+                </button>
             </ng-template>
         </div>
     </mat-step>
