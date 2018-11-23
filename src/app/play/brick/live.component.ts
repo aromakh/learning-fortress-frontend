@@ -67,7 +67,7 @@ export class LiveComponent implements OnInit {
         setTimeout(function() {
             stepper.next();
         }, 500);
-        audios.forEach(audio => {
+        audios.forEach((audio: any) => {
             setTimeout(function() { audio.play(); }, parseInt(audio.getAttribute('delay'), 10));
         });
     }
@@ -86,9 +86,7 @@ export class LiveComponent implements OnInit {
         el.scrollLeft += 30;
     }
 
-    finishBrick(sound) {
-        sound.play();
-
+    finishBrick(sound = null) {
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
 
@@ -108,9 +106,14 @@ export class LiveComponent implements OnInit {
             };
             console.log(`score is ${score} out of ${maxScore}, which is ${score * 100 / maxScore}%`);
             this.bricks.currentBrickAttempt = ba;
-            setTimeout(() => {
+            if (sound) {
+                sound.play();
+                setTimeout(() => {
+                    this.router.navigate(['../provisionalScore'], { relativeTo: this.route });
+                }, 500);
+            } else {
                 this.router.navigate(['../provisionalScore'], { relativeTo: this.route });
-            }, 500);
+            }
         });
     }
 

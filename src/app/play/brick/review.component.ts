@@ -68,9 +68,7 @@ export class ReviewComponent implements OnInit {
         });
     }
 
-    finishBrick(sound) {
-        sound.play();
-
+    finishBrick(sound = null) {
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
 
@@ -90,9 +88,14 @@ export class ReviewComponent implements OnInit {
             };
             console.log(`score is ${score} out of ${this.bricks.currentBrickAttempt.maxScore}, which is ${score * 100 / this.bricks.currentBrickAttempt.maxScore}%`);
             this.bricks.currentBrickAttempt = ba;
-            setTimeout(() => {
+            if (sound) {
+                sound.play();
+                setTimeout(() => {
+                    this.router.navigate(["../ending"], { relativeTo: this.route });
+                }, 500);
+            } else {
                 this.router.navigate(["../ending"], { relativeTo: this.route });
-            }, 500);
+            }
         });
     }
 }
