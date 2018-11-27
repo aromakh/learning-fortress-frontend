@@ -1,13 +1,5 @@
 /**** Handles css for both live and review phases ****/
 
-/*
-Appears to be unused - flagged for removal 10/9/2018
-
-.grow {
-    flex-grow: 1;
-}
-*/
-
 /**** Layout ****/
 /* See Global stylesheet for brick overrides */
 
@@ -35,8 +27,6 @@ mat-card, .sort-list > mat-list-item {
     overflow: hidden;
 }
 
-/* This broke the drag and drop - propose deletion as its not used anywhere else 
-14-11-18
 .arrow-box {
     border-bottom: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);
@@ -48,7 +38,6 @@ mat-card, .sort-list > mat-list-item {
     cursor: move;
     background: white;
 }
-*/
   
 .cdk-drag-preview {
     font-size: 8px;
@@ -64,10 +53,6 @@ mat-card, .sort-list > mat-list-item {
   
 .cdk-drag-animating {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-  
-.arrow-box:last-child {
-    border: none;
 }
   
 .arrow-list.cdk-drop-list-dragging .arrow-box:not(.cdk-drag-placeholder) {
@@ -194,6 +179,12 @@ mat-card, .sort-list > mat-list-item {
     flex-direction: row;
 }
 
+/**** Order Component ****/
+.order-box {
+    height:auto !important;
+    padding:10px;
+}
+
 /**** HorizontalShuffle Component ****/
 .horizontal-shuffle-container {
     width: 1000px;
@@ -230,11 +221,6 @@ mat-card, .sort-list > mat-list-item {
     padding-left: 25px;
     border-left: #006ece 5px solid;
     user-select: none;
-}
-
-/**** Order component ****/
-.order-number {
-    margin-right: 20px;
 }
 
 

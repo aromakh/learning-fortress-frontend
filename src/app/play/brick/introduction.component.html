@@ -1,3 +1,7 @@
+<audio #audioPlaceOnTable delay=0>
+    <source src="assets/sounds/sport_pool_snooker_rack_triangle_place_down_on_table.mp3" type="audio/mpeg">
+</audio>
+
 <timer [timer]="timer"></timer>
 <div class="container" [ngStyle.xs]="{ 'text-align': 'center' }"
     fxLayout="column" *ngIf="(aBrick | async) as brick">
@@ -24,7 +28,8 @@
     <div class="begin-row"
         fxLayout="row" fxLayoutAlign="start center">
         <div fxFlex="1 0 0"></div>
-        <p class="begin-label">Begin Brick</p><a mat-fab class="fab-bottom" routerLink="../live"><mat-icon>play_arrow</mat-icon></a>
+        <p class="begin-label">Begin Brick</p>
+        <a mat-fab class="fab-bottom" (click)="startBrick(audioPlaceOnTable)"><mat-icon>play_arrow</mat-icon></a>
     </div>
     <mat-accordion multi="true">
         <mat-expansion-panel expanded="false">

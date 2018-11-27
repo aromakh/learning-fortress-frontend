@@ -1,9 +1,24 @@
+<audio #audioPlaceonTable delay=0>
+    <source src="assets/sounds/sport_pool_snooker_rack_triangle_place_down_on_table.mp3" type="audio/mpeg">
+</audio>
+    
+<audio #audioTurnPage delay=400>
+    <source src="assets/sounds/zapsplat_household_magazine_glossy_page_turn_002.mp3" type="audio/mpeg">
+</audio>
+
 <timer [timer]="timer" [isRed]="true"></timer>
-<mat-horizontal-stepper>
+<mat-horizontal-stepper #stepper>
     <ng-template matStepperIcon="number" let-index="index">
-        <ng-container *ngIf="index < 20">
-            <span [ngClass]="'icon-raw-blue-' + (index + 1)"></span>
+        <ng-container *ngIf="!brickAttempt?.answers[index].correct; else goodStepperIcon">
+            <span class="tick-icon tick-NotFilledBlueCircleCross">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
+            </span>
         </ng-container>
+        <ng-template #goodStepperIcon>
+            <span class="tick-icon tick-notFilledGreenCircleTick">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
+            </span>
+        </ng-template>
     </ng-template>
     <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
         <ng-template matStepLabel></ng-template>
@@ -15,11 +30,11 @@
             <div fxFlex="1 0 0"></div>
             <ng-container *ngIf="index === (brick | async)?.questions.length - 1; else  next_button">
                 <p class="begin-label">Finish Brick Attempt</p>
-                <a mat-fab class="fab-bottom" (click)="finishBrick()"><mat-icon>play_arrow</mat-icon></a>
+                <button mat-fab class="fab-bottom icobutton" (click)="finishBrick(audioPlaceonTable)"><mat-icon>play_arrow</mat-icon></button>
             </ng-container>
             <ng-template #next_button>
                 <p class="begin-label">Next - Don't panic, you can always come back</p>
-                <button class="fab-bottom" mat-fab mat-button matStepperNext><mat-icon>play_arrow</mat-icon></button>
+                <button class="fab-bottom icobutton" mat-fab mat-button (click)="goForward(stepper, [audioTurnPage, audioPlaceonTable])"><mat-icon>play_arrow</mat-icon></button>
             </ng-template>
         </div>
     </mat-step>

@@ -40,9 +40,7 @@ export class CompOrder extends Comp {
                         <span *ngIf="attempt;" class="tick-icon tick-FilledDenimBlueRectCross">
                             <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
                         </span>
-                        <div class="order-number" fittext>
-                            {{choice}}
-                        </div>
+                        <div class="order-number" fittext [innerHTML]="choice"></div>
                     </div>
                     <div *ngIf="attempt">
                         <!-- <div *ngIf="data.data.reveals" class="reveal">{{data.data.reveals[getChoice(choice)]}}</div> -->
