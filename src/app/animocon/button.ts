@@ -25,7 +25,7 @@ function extend( a, b ) {
     return a;
 }
 
-function Animocon(el, options) {
+function Animocon(el, options, sounds = []) {
     this.el = el;
     this.options = extend( {}, this.options );
     extend( this.options, options );
@@ -38,6 +38,17 @@ function Animocon(el, options) {
 
     const self = this;
     this.el.addEventListener(clickHandler, function() {
+        sounds.forEach(sound => {
+            if (sound.delay) {
+                setTimeout(function() {
+                    const audio = new Audio(sound.src);
+                    audio.play();
+                }, sound.delay);
+            } else {
+                const audio = new Audio(sound.src);
+                audio.play();
+            }
+        });
         self.timeline.replay();
     });
 }
@@ -47,7 +58,7 @@ Animocon.prototype.options = {
 };
 
 // Animocon animation function
-export function animateButtons(buttons) {
+export function animateButtons(buttons, sounds = []) {
     buttons.forEach(el1 => {
         const el1span = el1.querySelector('mat-icon');
         const notUsedObj = new Animocon(el1, {
@@ -93,6 +104,6 @@ export function animateButtons(buttons) {
                     }
                 })
             ],
-        });
+        }, sounds);
     });
 }

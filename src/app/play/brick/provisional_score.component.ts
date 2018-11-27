@@ -49,4 +49,9 @@ export class ProvisionalScoreComponent {
     startBrick() {
         this.router.navigate(['../synthesis'], { relativeTo: this.route })
     }
+
+    next(audio) {
+        audio.play();
+        audio.onended = this.startBrick.bind(this);
+    }
 }

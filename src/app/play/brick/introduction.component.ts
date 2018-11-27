@@ -43,7 +43,10 @@ export class IntroductionComponent {
         this.timer.countDown(time);
     }
 
-    startBrick() {
-        this.router.navigate(['../live'], { relativeTo: this.route })
+    next() { this.router.navigate(['../live'], { relativeTo: this.route }); }
+
+    startBrick(audio) {
+        audio.play();
+        audio.onended = this.next.bind(this);
     }
 }

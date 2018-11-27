@@ -56,14 +56,18 @@ export class LiveComponent implements OnInit {
         // Poll to check for button elements with icobutton class
         setTimeout(function() {
             const items = [].slice.call(document.querySelectorAll('button.icobutton'));
-            animateButtons(items);
+            // params: buttons and sound effects
+            animateButtons(items, []);
         }, 500);
     }
 
-    goForward(stepper) {
+    goForward(stepper, audios: Array<HTMLElement>) {
         setTimeout(function() {
             stepper.next();
         }, 500);
+        audios.forEach((audio: any) => {
+            setTimeout(function() { audio.play(); }, parseInt(audio.getAttribute('delay'), 10));
+        });
     }
 
     getStepperScroll() {
@@ -80,7 +84,9 @@ export class LiveComponent implements OnInit {
         el.scrollLeft += 30;
     }
 
-    finishBrick() {
+    next() { this.router.navigate(['../provisionalScore'], { relativeTo: this.route }); }
+
+    finishBrick(sound = null) {
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
 
@@ -100,9 +106,12 @@ export class LiveComponent implements OnInit {
             };
             console.log(`score is ${score} out of ${maxScore}, which is ${score * 100 / maxScore}%`);
             this.bricks.currentBrickAttempt = ba;
-            setTimeout(() => {
-                this.router.navigate(['../provisionalScore'], { relativeTo: this.route });
-            }, 500);
+            if (sound) {
+                sound.play();
+                sound.onended = this.next.bind(this);
+            } else {
+                this.next();
+            }
         });
     }
 
