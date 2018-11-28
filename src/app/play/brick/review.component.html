@@ -6,6 +6,10 @@
     <source src="assets/sounds/zapsplat_household_magazine_glossy_page_turn_002.mp3" type="audio/mpeg">
 </audio>
 
+<audio #audioFinishReview>
+    <source src="assets/sounds/noisecreations_SFX-NCFREE02_Flabby-Burd.mp3" type="audio/mpeg">
+</audio>
+
 <timer [timer]="timer" [isRed]="true"></timer>
 <mat-horizontal-stepper #stepper>
     <ng-template matStepperIcon="number" let-index="index">
@@ -30,7 +34,7 @@
             <div fxFlex="1 0 0"></div>
             <ng-container *ngIf="index === (brick | async)?.questions.length - 1; else  next_button">
                 <p class="begin-label">Finish Brick Attempt</p>
-                <button mat-fab class="fab-bottom icobutton" (click)="finishBrick(audioPlaceonTable)"><mat-icon>play_arrow</mat-icon></button>
+                <button mat-fab class="fab-bottom icobutton" (click)="finishBrick(audioFinishReview)"><mat-icon>play_arrow</mat-icon></button>
             </ng-container>
             <ng-template #next_button>
                 <p class="begin-label">Next - Don't panic, you can always come back</p>
