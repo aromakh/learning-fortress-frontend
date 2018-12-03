@@ -7,6 +7,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { BrickTimePipe } from "./brickTime.pipe";
 import { TimerService, Timer } from "./timer.service";
 
+import * as introJs from 'intro.js';
+
 @Component({
     selector: 'live-summary',
     templateUrl: './summary.component.html',
@@ -34,6 +36,11 @@ export class SummaryComponent {
                 this.showBrick(val);
             }
         });
+
+        // intro JS init and move to review phrase when done.
+        setTimeout(() => {
+            introJs().start().oncomplete(function() { this.startBrick(); }.bind(this));
+        }, 1000);
     }
 
     showBrick(brick: Brick) {

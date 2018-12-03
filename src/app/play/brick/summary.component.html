@@ -7,7 +7,7 @@
     <h3>{{ brick.subject }}/{{ (aPallet | async)?.name }}/{{ ((brick.type | brickTime)/60000) }} minutes</h3>
     <h1>{{ brick.title }}</h1>
 
-    <div class="overflow">
+    <div class="overflow" data-step="1" [attr.data-intro]="true ? 'This is a synthesis to make sense of what you were just working on' : null">
         <div class="data-container" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
             <mat-card fxFill class="summary-container" >
                 <mat-card-title>
