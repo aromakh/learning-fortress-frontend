@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 // Important jquery may not look like it is being used but it really is
 import * as $ from 'jquery';
+import * as introJs from 'intro.js';
 import { animateButtons } from 'src/app/animocon/button';
 
 @Component({
@@ -33,7 +34,15 @@ export class LiveComponent implements OnInit {
                 this._brick = data;
                 this.showBrick(this._brick);
             }
+
+            setTimeout(this.setIntroJs.bind(this), 1000);
         });
+    }
+
+    setIntroJs() {
+        introJs().start().oncomplete(function() {
+            this.finishBrick();
+        }.bind(this));
     }
 
     brick: Observable<Brick>;

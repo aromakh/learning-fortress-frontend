@@ -8,9 +8,9 @@
 <timer [timer]="timer" [isRed]="true"></timer>
 <mat-horizontal-stepper #stepper>
     <ng-template matStepperIcon="number" let-index="index">
-        <ng-container *ngIf="index < 20">
+        <div *ngIf="index < 20" data-step="3" [attr.data-intro]="index == 0 ? 'When you have finished the question you can move on to the next one until you are done.' : null">
             <span [ngClass]="'icon-raw-blue-' + (index + 1)"></span>
-        </ng-container>
+        </div>
     </ng-template>
     <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
         <!-- TODO: #209 suggestion - hiding these buttons until we decide what to do with them. <div style="height: 100%; flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center; align-items: center;">
@@ -18,8 +18,9 @@
             <a mat-fab (click)="scrollRigth()" style="margin: 10px" title="scroll questions right"><mat-icon>navigate_next</mat-icon></a>
         </div>
         -->
-      
-        <question [question]="question" ></question>
+        <div data-step="1" [attr.data-intro]="index == 0 ? 'This is a question, there are several different types' : null">
+            <question [question]="question"></question>
+        </div> 
         <br>
         <div class="begin-row" style="padding-bottom: 85px;" fxLayout="row" fxLayoutAlign="start center">
             <div fxFlex="1 0 0"></div>
@@ -31,7 +32,8 @@
                 <p class="begin-label">Next - Don't panic, you can always come back</p>
                 <button
                     class="fab-bottom icobutton" mat-fab mat-button
-                    (click)="goForward(stepper, [audioTurnPage, audioPlaceonTable])">
+                    (click)="goForward(stepper, [audioTurnPage, audioPlaceonTable])"
+                    data-step="2" [attr.data-intro]="index == 0 ? 'When you have finished the question you can move on to the next one until you are done.' : null">
                     <mat-icon>play_arrow</mat-icon>
                 </button>
             </ng-template>
