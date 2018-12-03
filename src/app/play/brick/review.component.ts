@@ -9,6 +9,8 @@ import { AuthService } from "../../auth/auth.service";
 import { QuestionComponent } from "./question.component";
 import { animateButtons } from "src/app/animocon/button";
 
+import * as introJs from "intro.js";
+
 @Component({
     selector: 'live-review',
     templateUrl: './review.component.html',
@@ -18,23 +20,29 @@ export class ReviewComponent implements OnInit {
     constructor(public bricks: BrickService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public route: ActivatedRoute, public auth: AuthService) {
         this.brick = bricks.currentBrick.asObservable();
         this.brickAttempt = bricks.currentBrickAttempt;
-        if(!this.brickAttempt) {
+        if (!this.brickAttempt) {
             this.router.navigate(['../live'], {relativeTo: route});
         }
         this.timer = timer.new();
         this.timer.timeResolution = 1000;
         this.brickTime = brickTime;
         bricks.currentBrick.subscribe((data) => {
-            if(data != null) {
+            if (data != null) {
                 this._brick = data;
                 this.showBrick(this._brick);
             }
-        })
+        });
+
+        setTimeout(function () {
+            introJs().start().oncomplete(function() {
+                this.finishBrick();
+            }.bind(this));
+        }.bind(this), 1000);
     }
 
     brick: Observable<Brick>;
     brickAttempt: BrickAttempt;
-    timer : Timer;
+    timer: Timer;
 
     private _brick: Brick;
     private brickTime: BrickTimePipe;
