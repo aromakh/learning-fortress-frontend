@@ -39,6 +39,8 @@ export class ProvisionalScoreComponent {
                 this.showBrick(val);
             }
         });
+
+        this.startBrick();
     }
 
     showBrick(brick: Brick) {

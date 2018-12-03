@@ -12,10 +12,12 @@ import { NavigationModule } from '../navigation/navigation.module';
 
 // Routing
 import { PlayRoutingModule } from './play.routing';
+import { IntroService } from '../intro.service';
 
 @NgModule({
     imports: [ PlayRoutingModule, CommonModule, FlexLayoutModule, MaterialModule, BrickModule, NavigationModule ],
     declarations: [ PlayComponent, DashboardComponent, PalletComponent ],
-    exports: [ NavigationModule ]
+    exports: [ NavigationModule ],
+    providers: [IntroService]
 })
 export class PlayModule { }

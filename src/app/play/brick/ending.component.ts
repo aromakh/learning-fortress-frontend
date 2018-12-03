@@ -5,6 +5,8 @@ import { BrickService } from "./brick.service";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 
+import * as introJs from "intro.js";
+
 @Component({
     selector: 'live-ending',
     templateUrl: './ending.component.html',
@@ -29,6 +31,12 @@ export class EndingComponent {
         });
         this.brickAttempt = bricks.currentBrickAttempt;
         bricks.publishBrickAttempt(this.brickAttempt);
+
+        setTimeout(function () {
+            introJs().start().oncomplete(function () {
+                this.next();
+            }.bind(this));
+        }.bind(this), 1000);
     }
 
     next() { this.router.navigate(['play', 'pallet', this._brick.pallet.id]); }

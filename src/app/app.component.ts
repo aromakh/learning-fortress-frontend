@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
     templateUrl: './app.component.html',
 })
 export class AppComponent {
-    constructor(private dragula: DragulaService, public authService: AuthService) { 
+    constructor(private dragula: DragulaService, public authService: AuthService) {
         this.dragulaIOS11Fix();
     }
 

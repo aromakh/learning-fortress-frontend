@@ -1,5 +1,6 @@
-<div class="pallets-container" data-intro="This is a pallet. It is a collection of 20, 40 and 60 minute bricks">
-    <div class="pallet-header" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+<div class="pallets-container" data-step="2" data-intro="This is a pallet. It is a collection of 20, 40 and 60 minute bricks">
+    <div
+        #palletTitle class="pallet-header" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
         <h1>{{(pallet | async)?.name}}</h1>
     </div>
     <mat-grid-list cols="6" rowHeight="1:2" gutterSize="5px" class="pallet-list" [ngClass]="'theme-'+(pallet | async)?.subject">
@@ -10,6 +11,7 @@
             fxLayout.gt-xs="column"
             [ngClass]="'pallet-tile-'+brick.type"
             [colspan]="brick.type*brick.type-2*brick.type+3"
+            [attr.data-step]="index == 0 ? 3 : null"
             [attr.data-intro]="index == 0 ? 'This is a pallet. It is a collection of 20, 40 and 60 minute bricks' : null">
             {{brick.subject}}
         </mat-grid-tile>
