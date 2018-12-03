@@ -1,9 +1,16 @@
-<div class="pallets-container">
+<div class="pallets-container" data-intro="This is a pallet. It is a collection of 20, 40 and 60 minute bricks">
     <div class="pallet-header" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
         <h1>{{(pallet | async)?.name}}</h1>
     </div>
     <mat-grid-list cols="6" rowHeight="1:2" gutterSize="5px" class="pallet-list" [ngClass]="'theme-'+(pallet | async)?.subject">
-        <mat-grid-tile class="text-inside-grid" routerLink="/play/brick/{{brick._ref.id}}" fxLayout.gt-xs="column" *ngFor="let brick of bricks | async" [ngClass]="'pallet-tile-'+brick.type" [colspan]="brick.type*brick.type-2*brick.type+3">
+        <mat-grid-tile
+            *ngFor="let brick of bricks | async; let index = index"
+            class="text-inside-grid"
+            routerLink="/play/brick/{{brick._ref.id}}"
+            fxLayout.gt-xs="column"
+            [ngClass]="'pallet-tile-'+brick.type"
+            [colspan]="brick.type*brick.type-2*brick.type+3"
+            [attr.data-intro]="index == 0 ? 'This is a pallet. It is a collection of 20, 40 and 60 minute bricks' : null">
             {{brick.subject}}
         </mat-grid-tile>
     </mat-grid-list>
