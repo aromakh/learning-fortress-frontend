@@ -16,7 +16,7 @@
             </mat-expansion-panel-header>
             <div [innerHTML]="brick.brief"></div>
         </mat-expansion-panel>
-        <mat-expansion-panel expanded="true">
+        <mat-expansion-panel expanded="true" [attr.data-intro]="true ? 'This is some prep that you should read because the questions that come next might be quite hard.' : null">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Prep

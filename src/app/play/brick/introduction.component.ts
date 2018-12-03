@@ -10,6 +10,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { TimerService, Timer } from './timer.service';
 import { BrickTimePipe } from './brickTime.pipe';
 
+import * as introJs from 'intro.js';
+
 @Component({
     selector: 'introduction',
     templateUrl: './introduction.component.html',
@@ -30,6 +32,12 @@ export class IntroductionComponent {
                 this.aPallet = bricks.currentPallet;
                 this.showBrick(val);
             }
+
+            setTimeout(() => {
+                introJs().start().oncomplete(function() {
+                    router.navigate(['../live'], { relativeTo: route })
+                });
+            }, 1000);
         });
     }
 
