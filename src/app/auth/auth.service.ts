@@ -11,12 +11,16 @@ import { Router } from "@angular/router";
 })
 export class AuthService {
     user: Observable<User>;
+    isNewUser: Boolean = false;
 
     constructor(public afAuth: AngularFireAuth, private router: Router) {
         this.user = afAuth.user;
     }
 
     signInSuccess(event: FirebaseUISignInSuccessWithAuthResult) {
+        if (event.authResult.additionalUserInfo.isNewUser) {
+            this.isNewUser = true;
+        }
         console.log(`signed in as ${event.authResult.user.displayName} who is${event.authResult.additionalUserInfo.isNewUser?"":" not"} a new user.`);
         return true;
     }

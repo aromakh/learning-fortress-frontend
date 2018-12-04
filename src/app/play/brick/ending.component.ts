@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, AfterViewInit } from "@angular/core";
 import { BrickAttempt, Brick, Pallet } from "../../schema";
 import { BrickService } from "./brick.service";
 
@@ -6,19 +6,24 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import * as introJs from "intro.js";
+import { IntroService } from "src/app/intro.service";
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
     selector: 'live-ending',
     templateUrl: './ending.component.html',
     styleUrls: ['./summary.component.scss']
 })
-export class EndingComponent {
+export class EndingComponent implements AfterViewInit {
     brickAttempt: BrickAttempt;
     aBrick: BehaviorSubject<Brick>;
     aPallet: Observable<Pallet>;
     _brick: Brick
 
-    constructor(private bricks: BrickService, private router: Router, private route: ActivatedRoute) {
+    constructor(
+        private bricks: BrickService, private router: Router, private route: ActivatedRoute,
+        private auth: AuthService, private introService: IntroService
+    ) {
         if(bricks.currentBrickAttempt == null) {
             router.navigate(["../live"], { relativeTo: route });
         }
@@ -31,12 +36,13 @@ export class EndingComponent {
         });
         this.brickAttempt = bricks.currentBrickAttempt;
         bricks.publishBrickAttempt(this.brickAttempt);
+    }
 
-        setTimeout(function () {
-            introJs().start().oncomplete(function () {
-                this.next();
-            }.bind(this));
-        }.bind(this), 1000);
+    ngAfterViewInit() {
+        // IntroJS if new user and not skipped
+        if (this.auth.isNewUser && !this.introService.isSkipped) {
+            this.introService.start(this.next.bind(this));
+        }
     }
 
     next() { this.router.navigate(['play', 'pallet', this._brick.pallet.id]); }

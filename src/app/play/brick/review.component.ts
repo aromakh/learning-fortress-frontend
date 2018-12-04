@@ -1,4 +1,4 @@
-import { Component, ViewChildren, QueryList, OnInit } from "@angular/core";
+import { Component, ViewChildren, QueryList, OnInit, AfterViewInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Brick, BrickAttempt, QuestionAttempt } from "../../schema";
 import { Timer, TimerService } from "./timer.service";
@@ -10,14 +10,16 @@ import { QuestionComponent } from "./question.component";
 import { animateButtons } from "src/app/animocon/button";
 
 import * as introJs from "intro.js";
+import { IntroService } from "src/app/intro.service";
 
 @Component({
     selector: 'live-review',
     templateUrl: './review.component.html',
     styleUrls: ['./live.component.scss']
 })
-export class ReviewComponent implements OnInit {
-    constructor(public bricks: BrickService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public route: ActivatedRoute, public auth: AuthService) {
+export class ReviewComponent implements OnInit, AfterViewInit  {
+    constructor(public bricks: BrickService, timer: TimerService, brickTime: BrickTimePipe, public router: Router,
+        public route: ActivatedRoute, public auth: AuthService, private introService: IntroService) {
         this.brick = bricks.currentBrick.asObservable();
         this.brickAttempt = bricks.currentBrickAttempt;
         if (!this.brickAttempt) {
@@ -32,12 +34,6 @@ export class ReviewComponent implements OnInit {
                 this.showBrick(this._brick);
             }
         });
-
-        setTimeout(function () {
-            introJs().start().oncomplete(function() {
-                this.finishBrick();
-            }.bind(this));
-        }.bind(this), 1000);
     }
 
     brick: Observable<Brick>;
@@ -63,6 +59,13 @@ export class ReviewComponent implements OnInit {
             const items = [].slice.call(document.querySelectorAll('button.icobutton'));
             animateButtons(items, []);
         }, 500);
+    }
+
+    ngAfterViewInit() {
+        // IntroJS if new user and not skipped
+        if (this.auth.isNewUser && !this.introService.isSkipped) {
+            this.introService.start(this.finishBrick.bind(this));
+        }
     }
 
     goForward(stepper, audios) {

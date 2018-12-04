@@ -1,4 +1,4 @@
-import { Component, ViewChildren, QueryList, OnInit } from '@angular/core';
+import { Component, ViewChildren, QueryList, OnInit, AfterViewInit } from '@angular/core';
 
 import { BrickService } from './brick.service';
 
@@ -15,6 +15,7 @@ import { AuthService } from '../../auth/auth.service';
 import * as $ from 'jquery';
 import * as introJs from 'intro.js';
 import { animateButtons } from 'src/app/animocon/button';
+import { IntroService } from 'src/app/intro.service';
 
 @Component({
     selector: 'live',
@@ -22,9 +23,11 @@ import { animateButtons } from 'src/app/animocon/button';
     styleUrls: ['./live.component.scss'],
     providers: [ ]
 })
-export class LiveComponent implements OnInit {
-    constructor(public bricks: BrickService, timer: TimerService, brickTime: BrickTimePipe,
-        public router: Router, public route: ActivatedRoute, public auth: AuthService) {
+export class LiveComponent implements OnInit, AfterViewInit {
+    constructor(
+        public bricks: BrickService, timer: TimerService, brickTime: BrickTimePipe, public router: Router,
+        public route: ActivatedRoute, public auth: AuthService, private introService: IntroService
+    ) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
         this.timer.timeResolution = 1000;
@@ -34,15 +37,7 @@ export class LiveComponent implements OnInit {
                 this._brick = data;
                 this.showBrick(this._brick);
             }
-
-            setTimeout(this.setIntroJs.bind(this), 1000);
         });
-    }
-
-    setIntroJs() {
-        introJs().start().oncomplete(function() {
-            this.finishBrick();
-        }.bind(this));
     }
 
     brick: Observable<Brick>;
@@ -68,6 +63,13 @@ export class LiveComponent implements OnInit {
             // params: buttons and sound effects
             animateButtons(items, []);
         }, 500);
+    }
+
+    ngAfterViewInit() {
+        // IntroJS if new user and not skipped
+        if (this.auth.isNewUser && !this.introService.isSkipped) {
+            this.introService.start(this.finishBrick.bind(this));
+        }
     }
 
     goForward(stepper, audios: Array<HTMLElement>) {

@@ -8,6 +8,8 @@ import { BrickTimePipe } from "./brickTime.pipe";
 import { TimerService, Timer } from "./timer.service";
 
 import * as introJs from 'intro.js';
+import { AuthService } from "src/app/auth/auth.service";
+import { IntroService } from "src/app/intro.service";
 
 @Component({
     selector: 'live-summary',
@@ -21,7 +23,9 @@ export class SummaryComponent {
 
     timer: Timer;
 
-    constructor(private bricks: BrickService, timer: TimerService, private brickTime: BrickTimePipe, private router: Router, private route: ActivatedRoute) {
+    constructor(private bricks: BrickService, timer: TimerService, private brickTime: BrickTimePipe,
+        private router: Router, private route: ActivatedRoute, private auth: AuthService, private introService: IntroService) {
+
         if(bricks.currentBrickAttempt == null) {
             router.navigate(["../live"], { relativeTo: route });
         }
@@ -36,11 +40,13 @@ export class SummaryComponent {
                 this.showBrick(val);
             }
         });
+    }
 
+    ngAfterViewInit() {
         // intro JS init and move to review phrase when done.
-        setTimeout(() => {
-            introJs().start().oncomplete(function() { this.startBrick(); }.bind(this));
-        }, 1000);
+        if (this.auth.isNewUser && !this.introService.isSkipped) {
+            this.introService.start(this.startBrick.bind(this));
+        }
     }
 
     showBrick(brick: Brick) {
