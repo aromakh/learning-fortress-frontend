@@ -6,6 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrickTimePipe } from './brickTime.pipe';
 import { TimerService, Timer } from './timer.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { IntroService } from 'src/app/intro.service';
 
 @Component({
     selector: 'provisional-score',
@@ -20,11 +22,9 @@ export class ProvisionalScoreComponent {
     timer: Timer;
 
     constructor(
-        private bricks: BrickService,
-        timer: TimerService,
-        private brickTime: BrickTimePipe,
-        private router: Router,
-        private route: ActivatedRoute) {
+        private bricks: BrickService, timer: TimerService, private brickTime: BrickTimePipe, private router: Router,
+        private route: ActivatedRoute, private auth: AuthService, private introService: IntroService
+    ) {
         if (bricks.currentBrickAttempt == null) {
             router.navigate(['../live'], { relativeTo: route });
         }
@@ -40,7 +40,10 @@ export class ProvisionalScoreComponent {
             }
         });
 
-        this.startBrick();
+        // Skip phrase for IntroJS if new user
+        if (auth.isNewUser && !introService.isSkipped) {
+            this.startBrick();
+        }
     }
 
     showBrick(brick: Brick) {
